@@ -34,7 +34,6 @@ setup(
     install_requires = ['setuptools',
                         'zope.annotation',
                         'zope.interface',
-                        'zope.datetime',
-                        'zope.app'],
+                        ],
     zip_safe = False
     )
