@@ -31,6 +31,7 @@ setup(
     package_dir={'':'src'},
     namespace_packages=['zope'],
     include_package_data=True,
+    extras_require=dict(test=['zope.app.testing']),
     install_requires = ['setuptools',
                         'zope.annotation',
                         'zope.interface',
