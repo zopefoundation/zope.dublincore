@@ -20,7 +20,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="zope.dublincore",
-    version="3.4dev",
+    version = '3.4.0a1',
     url='http://svn.zope.org/zope.dublincorew',
     license='ZPL 2.1',
     description='Zope dottedname',
