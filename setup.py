@@ -21,9 +21,9 @@ from setuptools import setup, find_packages
 setup(
     name="zope.dublincore",
     version = '3.4.0b1',
-    url='http://svn.zope.org/zope.dublincorew',
+    url='http://svn.zope.org/zope.dublincore',
     license='ZPL 2.1',
-    description='Zope dottedname',
+    description='Zope Dublin Core implementation',
     author='Zope Corporation and Contributors',
     author_email='zope3-dev@zope.org',
 
