@@ -23,7 +23,7 @@ long_description = (open('README.txt').read() +
 
 setup(
     name="zope.dublincore",
-    version = '3.4.0',
+    version = '3.4.1dev',
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
