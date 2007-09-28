@@ -15,15 +15,19 @@
 
 $Id$
 """
-
 from setuptools import setup, find_packages
+
+long_description = (open('README.txt').read() +
+                    '\n\n' +
+                    open('CHANGES.txt').read())
 
 setup(
     name="zope.dublincore",
-    version = '3.4.0b1',
-    url='http://svn.zope.org/zope.dublincore',
+    version = '3.4.0',
+    url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
+    long_description=long_description,
     author='Zope Corporation and Contributors',
     author_email='zope3-dev@zope.org',
 
@@ -31,10 +35,14 @@ setup(
     package_dir={'':'src'},
     namespace_packages=['zope'],
     include_package_data=True,
-    extras_require=dict(test=['zope.app.testing']),
     install_requires = ['setuptools',
                         'zope.annotation',
+                        'zope.component',
                         'zope.interface',
+                        # testing dependencies
+                        'zope.testing',
+                        'zope.security',
+                        'zope.app.testing',
                         ],
     zip_safe = False
     )
