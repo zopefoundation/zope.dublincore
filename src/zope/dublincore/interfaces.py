@@ -265,7 +265,7 @@ class IDCPublishing(Interface):
 class IDCExtended(Interface):
     """Extended properties
 
-    This is a mized bag of properties we want but that we probably haven't
+    This is a mixed bag of properties we want but that we probably haven't
     quite figured out yet.
     """
 
