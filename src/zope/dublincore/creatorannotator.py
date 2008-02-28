@@ -24,8 +24,9 @@ from zope.security.proxy import removeSecurityProxy
 def CreatorAnnotator(event):
     """Update Dublin-Core creator property"""
     dc = IZopeDublinCore(event.object, None)
-    # Principals that can create object do not necessarily have
-    # 'zope.app.dublincore.change' permission. See issue 373.
+    # Principals that can create objects do not necessarily have
+    # 'zope.app.dublincore.change' permission.
+    # https://bugs.launchpad.net/zope3/+bug/98124
     dc = removeSecurityProxy(dc)
     if dc is None:
         return
@@ -39,4 +40,3 @@ def CreatorAnnotator(event):
             principalid = participation.principal.id
             if not principalid in dc.creators:
                 dc.creators = dc.creators + (unicode(principalid), )
-
