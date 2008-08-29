@@ -35,14 +35,15 @@ setup(
     package_dir={'':'src'},
     namespace_packages=['zope'],
     include_package_data=True,
+    extras_require={
+        'test': ['zope.testing',
+                 'zope.security',
+                 'zope.app.testing',
+                 ]},
     install_requires = ['setuptools',
                         'zope.annotation',
                         'zope.component',
                         'zope.interface',
-                        # testing dependencies
-                        'zope.testing',
-                        'zope.security',
-                        'zope.app.testing',
                         ],
     zip_safe = False
     )
