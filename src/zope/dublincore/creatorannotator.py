@@ -37,6 +37,8 @@ def CreatorAnnotator(event):
     interaction = queryInteraction()
     if interaction is not None:
         for participation in interaction.participations:
+            if participation.principal is None:
+                continue
             principalid = participation.principal.id
             if not principalid in dc.creators:
                 dc.creators = dc.creators + (unicode(principalid), )

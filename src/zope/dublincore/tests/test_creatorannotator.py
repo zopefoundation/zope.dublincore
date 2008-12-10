@@ -127,6 +127,13 @@ class Test(PlacefulSetup, TestCase, CleanUp):
         self.failUnless(bad_author.id in data.creators)
         endInteraction()
 
+        # Now, let's check if the auto-subscriber will work with None
+        # as principal (can happen sometimes in custom code).
+        newInteraction(DummyRequest(None))
+        CreatorAnnotator(event)
+        self.failIf(len(data.creators) != 2)
+        endInteraction()
+
 def test_suite():
     return TestSuite((
         makeSuite(Test),

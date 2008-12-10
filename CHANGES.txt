@@ -4,7 +4,7 @@ Changes
 3.4.1 (unreleased)
 ------------------
 
-...
+- Fix: Make CreatorAnnotator not to fail if participation principal is None
 
 3.4.0 (2007-09-28)
 ------------------
