@@ -4,6 +4,8 @@ Changes
 3.4.1 (unreleased)
 ------------------
 
+- Test dependencies are declared in a `test` extra now.
+
 - Fix: Make CreatorAnnotator not to fail if participation principal is None
 
 3.4.0 (2007-09-28)
