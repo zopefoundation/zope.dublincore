@@ -1,9 +1,10 @@
 Changes
 =======
 
-3.4.2 (unreleased)
+3.4.2 (2009-01-31)
 ------------------
 
+- Declare dependency on zope.datetime.
 
 3.4.1 (2009-01-26)
 ------------------
