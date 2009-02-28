@@ -4,7 +4,7 @@ Changes
 3.4.3 (unreleased)
 ------------------
 
-- ...
+- Include browser configuration only if zope.app.publisher is installed.
 
 3.4.2 (2009-01-31)
 ------------------
