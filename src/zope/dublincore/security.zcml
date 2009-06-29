@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <class class=".annotatableadapter.ZDCAnnotatableAdapter">
+    <require
+        permission="zope.app.dublincore.view"
+        interface=".interfaces.IZopeDublinCore"
+        />
+    <require
+        permission="zope.app.dublincore.change"
+        interface=".interfaces.IWritableGeneralDublinCore"
+        set_schema=".interfaces.IZopeDublinCore"
+        />
+  </class>
+
+</configure>
