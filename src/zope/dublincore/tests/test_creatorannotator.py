@@ -15,55 +15,109 @@
 
 $Id$
 """
-from unittest import TestCase, TestSuite, main, makeSuite
-from zope.app.component.testing import PlacefulSetup
-from zope.testing.cleanup import CleanUp
+import unittest
 
-from zope.interface import Interface, implements
-import zope.component
+class CreatorAnnotatorTests(unittest.TestCase):
 
-from zope.dublincore.creatorannotator import CreatorAnnotator
-from zope.dublincore.interfaces import IZopeDublinCore
-from zope.security.interfaces import IPrincipal
-from zope.security.management import newInteraction, endInteraction
+    def setUp(self):
+        from zope.testing.cleanup import cleanUp
+        cleanUp()
+        self._makeInterface()
+        self._registerAdapter()
 
-class IDummyContent(Interface):
-    pass
+    def tearDown(self):
+        from zope.testing.cleanup import cleanUp
+        from zope.security.management import endInteraction
+        endInteraction()
+        cleanUp()
 
-class DummyEvent(object):
-    pass
+    def _callFUT(self, event):
+        from zope.dublincore.creatorannotator import CreatorAnnotator
+        return CreatorAnnotator(event)
+
+    def _makeInterface(self):
+        from zope.interface import Interface
+
+        class IDummyContent(Interface):
+            pass
+
+        self._iface = IDummyContent
+
+    def _registerAdapter(self):
+        from zope.component import provideAdapter
+        from zope.dublincore.interfaces import IZopeDublinCore
+        provideAdapter(DummyDCAdapter, (self._iface, ), IZopeDublinCore)
+
+    def _makeContextAndEvent(self):
+
+        from zope.interface import implements
+
+        class DummyDublinCore(object):
+            implements(self._iface)
+            creators = ()
+
+        class DummyEvent(object):
+            def __init__(self, object):
+                self.object = object
+
+        context = DummyDublinCore()
+        event = DummyEvent(context)
+        return context, event
+
+    def _setPrincipal(self, id):
+        from zope.security.management import newInteraction
+        class DummyPrincipal(object):
+            title = 'TITLE'
+            description = 'DESCRIPTION'
+            def __init__(self, id):
+                self.id = id
+        if id is None:
+            newInteraction(DummyRequest(None))
+        else:
+            newInteraction(DummyRequest(DummyPrincipal(id)))
+
+    def test_w_no_request(self):
+        context, event = self._makeContextAndEvent()
+        self._callFUT(event)
+        self.assertEqual(context.creators, ())
+
+    def test_w_request_no_existing_creators(self):
+        context, event = self._makeContextAndEvent()
+        self._setPrincipal('phred')
+        self._callFUT(event)
+        self.assertEqual(context.creators, ('phred',))
+
+    def test_w_request_w_existing_creator_nomatch(self):
+        context, event = self._makeContextAndEvent()
+        context.creators = ('bharney',)
+        self._setPrincipal('phred')
+        self._callFUT(event)
+        self.assertEqual(context.creators, ('bharney', 'phred',))
+
+    def test_w_request_w_existing_creator_nomatch(self):
+        context, event = self._makeContextAndEvent()
+        context.creators = ('bharney', 'phred')
+        self._setPrincipal('phred')
+        self._callFUT(event)
+        self.assertEqual(context.creators, ('bharney', 'phred',))
+
+    def test_w_request_no_principal(self):
+        context, event = self._makeContextAndEvent()
+        context.creators = ('bharney', 'phred')
+        self._setPrincipal(None)
+        self._callFUT(event)
+        self.assertEqual(context.creators, ('bharney', 'phred',))
 
 class DummyDCAdapter(object):
 
-    __used_for__ = IDummyContent
-    implements(IZopeDublinCore)
-
     def _getcreator(self):
         return self.context.creators
-
     def _setcreator(self, value):
         self.context.creators = value
     creators = property(_getcreator, _setcreator, None, "Adapted Creators")
 
     def __init__(self, context):
         self.context = context
-        self.creators = context.creators
-
-
-class DummyDublinCore(object):
-
-    implements(IDummyContent)
-
-    creators = ()
-
-
-class DummyPrincipal(object):
-    implements(IPrincipal)
-
-    def __init__(self, id, title, description):
-        self.id = id
-        self.title = title
-        self.description = description
 
 
 class DummyRequest(object):
@@ -73,71 +127,7 @@ class DummyRequest(object):
         self.interaction = None
 
 
-class Test(PlacefulSetup, TestCase, CleanUp):
-
-    def setUp(self):
-        PlacefulSetup.setUp(self)
-        gsm = zope.component.getGlobalSiteManager()
-        gsm.registerAdapter(DummyDCAdapter, (IDummyContent, ), IZopeDublinCore)
-
-    def tearDown(self):
-        PlacefulSetup.tearDown(self)
-
-    def test_creatorannotation(self):
-        # Create stub event and DC object
-        event = DummyEvent()
-        data = DummyDublinCore()
-        event.object = data
-
-        good_author = DummyPrincipal('goodauthor', 'the good author',
-                                     'this is a very good author')
-
-        bad_author = DummyPrincipal('badauthor', 'the bad author',
-                                    'this is a very bad author')
-
-        # Check what happens if no user is there
-        CreatorAnnotator(event)
-        self.assertEqual(data.creators,())
-        endInteraction()
-
-        # Let the bad edit it first
-        newInteraction(DummyRequest(bad_author))
-        CreatorAnnotator(event)
-
-        self.failIf(len(data.creators) != 1)
-        self.failUnless(bad_author.id in data.creators)
-        endInteraction()
-
-        # Now let the good edit it
-        newInteraction(DummyRequest(good_author))
-        CreatorAnnotator(event)
-
-        self.failIf(len(data.creators) != 2)
-        self.failUnless(good_author.id in data.creators)
-        self.failUnless(bad_author.id in data.creators)
-        endInteraction()
-
-        # Let the bad edit it again
-        newInteraction(DummyRequest(bad_author))
-        CreatorAnnotator(event)
-
-        # Check that the bad author hasn't been added twice.
-        self.failIf(len(data.creators) != 2)
-        self.failUnless(good_author.id in data.creators)
-        self.failUnless(bad_author.id in data.creators)
-        endInteraction()
-
-        # Now, let's check if the auto-subscriber will work with None
-        # as principal (can happen sometimes in custom code).
-        newInteraction(DummyRequest(None))
-        CreatorAnnotator(event)
-        self.failIf(len(data.creators) != 2)
-        endInteraction()
-
 def test_suite():
-    return TestSuite((
-        makeSuite(Test),
+    return unittest.TestSuite((
+            unittest.makeSuite(CreatorAnnotatorTests),
         ))
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')

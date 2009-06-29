@@ -37,10 +37,10 @@ setup(
     include_package_data=True,
     extras_require=dict(
         test=[
-            'zope.app.component',
             'zope.testing',
             'zope.security',
-            'zope.app.testing']
+            'zope.app.testing',
+           ]
         ),
     install_requires = ['setuptools',
                         'zope.annotation',

@@ -4,6 +4,8 @@ Changes
 3.4.3 (unreleased)
 ------------------
 
+- Removed use of zope.app.component in testing.
+
 - Include browser configuration only if zope.app.publisher is installed.
 
 3.4.2 (2009-01-31)
