@@ -19,20 +19,23 @@ __docformat__ = 'restructuredtext'
 
 from persistent.dict import PersistentDict
 
-import zope.component
+from zope.annotation.interfaces import IAnnotatable
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapts
+from zope.interface import implements
 from zope.location import Location
-from zope.annotation.interfaces import IAnnotations, IAnnotatable
-from zope.dublincore.zopedublincore import ZopeDublinCore
-from zope.dublincore.zopedublincore import DateProperty, ScalarProperty
 from zope.dublincore.interfaces import IWriteZopeDublinCore
+from zope.dublincore.zopedublincore import DateProperty
+from zope.dublincore.zopedublincore import ScalarProperty
+from zope.dublincore.zopedublincore import ZopeDublinCore
 
 DCkey = "zope.app.dublincore.ZopeDublinCore"
 
 
 class ZDCAnnotatableAdapter(ZopeDublinCore, Location):
     """Adapt annotatable objects to Zope Dublin Core."""
-    zope.component.adapts(IAnnotatable)
-    zope.interface.implements(IWriteZopeDublinCore)
+    implements(IWriteZopeDublinCore)
+    adapts(IAnnotatable)
 
     annotations = None
 
