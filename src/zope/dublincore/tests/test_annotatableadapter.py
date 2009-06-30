@@ -106,8 +106,125 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         adapter._changed()
         self.assertEqual(annotations[DCkey]['title'], 'TITLE') #unchanged
 
+class DirectPropertyTests(unittest.TestCase):
+
+    def _getTargetClass(self):
+        from zope.dublincore.annotatableadapter import DirectProperty
+        return DirectProperty
+
+    def _makeOne(self, name, attrname):
+        return self._getTargetClass()(name, attrname)
+
+    def test___get___via_klass(self):
+        prop = self._makeOne('title', 'headline')
+        class Testing(object):
+            title = prop
+        self.failUnless(Testing.title is prop)
+
+    def test___get___via_instance(self):
+        prop = self._makeOne('title', 'headline')
+        class Context(object):
+            headline = u'HEADLINE'
+        class ZDCPartialAnnotatableAdapter(object):
+            title = prop
+            def __init__(self, context):
+                self.__context = context
+        context = Context()
+        testing = ZDCPartialAnnotatableAdapter(context)
+        self.assertEqual(testing.title, u'HEADLINE')
+
+    def test___set___non_unicode_raises(self):
+        prop = self._makeOne('title', 'headline')
+        class Context(object):
+            headline = u'HEADLINE'
+        class ZDCPartialAnnotatableAdapter(object):
+            title = prop
+            def __init__(self, context):
+                self.__context = context
+        context = Context()
+        testing = ZDCPartialAnnotatableAdapter(context)
+        try:
+            testing.title = 123
+        except TypeError:
+            pass
+        else:
+            self.fail("Didn't raise TypeError")
+
+    def test___set___unchanged_doesnt_mutate(self):
+        prop = self._makeOne('title', 'headline')
+        class Context(object):
+            headline = u'HEADLINE'
+            def __setattr__(self, name, value):
+                assert 0
+        class ZDCPartialAnnotatableAdapter(object):
+            title = prop
+            def __init__(self, context):
+                self.__context = context
+        context = Context()
+        testing = ZDCPartialAnnotatableAdapter(context)
+        testing.title = u'HEADLINE' # doesn't raise
+
+    def test___set___changed_mutates(self):
+        prop = self._makeOne('title', 'headline')
+        class Context(object):
+            headline = u'HEADLINE1'
+        class ZDCPartialAnnotatableAdapter(object):
+            title = prop
+            def __init__(self, context):
+                self.__context = context
+        context = Context()
+        testing = ZDCPartialAnnotatableAdapter(context)
+        testing.title = u'HEADLINE2'
+        self.assertEqual(context.headline, u'HEADLINE2')
+
+class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
+
+    def _callFUT(self, direct_fields):
+        from zope.dublincore.annotatableadapter \
+            import partialAnnotatableAdapterFactory
+        return partialAnnotatableAdapterFactory(direct_fields)
+
+    def test_w_empty_list_raises(self):
+        self.assertRaises(ValueError, self._callFUT, [])
+
+    def test_w_empty_dict_raises(self):
+        self.assertRaises(ValueError, self._callFUT, {})
+
+    def test_w_unknown_field_raises(self):
+        self.assertRaises(ValueError, self._callFUT, ['nonesuch'])
+
+    def test_w_date_fields_raises(self):
+        self.assertRaises(ValueError, self._callFUT, ['created'])
+        self.assertRaises(ValueError, self._callFUT, ['modified'])
+        self.assertRaises(ValueError, self._callFUT, ['effective'])
+        self.assertRaises(ValueError, self._callFUT, ['expires'])
+
+    def test_w_sequence_fields_raises(self):
+        self.assertRaises(ValueError, self._callFUT, ['creators'])
+        self.assertRaises(ValueError, self._callFUT, ['subjects'])
+        self.assertRaises(ValueError, self._callFUT, ['contributors'])
+
+    def test_w_scalar_prop_samename(self):
+        from zope.dublincore.annotatableadapter import DirectProperty
+        klass = self._callFUT(['title'])
+        prop = klass.title
+        self.failUnless(isinstance(prop, DirectProperty))
+        self.assertEqual(prop.__name__, 'title')
+        self.assertEqual(prop._DirectProperty__attrname, 'title') # XXX
+
+    def test_w_scalar_prop_mapped(self):
+        from zope.dublincore.annotatableadapter import DirectProperty
+        klass = self._callFUT({'title': 'headline'})
+        prop = klass.title
+        self.failUnless(isinstance(prop, DirectProperty))
+        self.assertEqual(prop.__name__, 'title')
+        self.assertEqual(prop._DirectProperty__attrname, 'headline') # XXX
+
+
 def test_suite():
     return unittest.TestSuite((
             unittest.makeSuite(ZDCAnnotatableAdapterTests),
+            unittest.makeSuite(DirectPropertyTests),
+            unittest.makeSuite(Test_partialAnnotatableAdapterFactory),
         ))
 

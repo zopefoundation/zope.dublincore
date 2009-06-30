@@ -68,6 +68,27 @@ class ZDCAnnotationData(PersistentDict):
 # Adapter factories created using this support the Dublin Core using a
 # mixture of annotations and data on the context object.
 
+
+class DirectProperty(object):
+
+    def __init__(self, name, attrname):
+        self.__name__ = name
+        self.__attrname = attrname
+
+    def __get__(self, inst, klass):
+        if inst is None:
+            return self
+        context = inst._ZDCPartialAnnotatableAdapter__context
+        return getattr(context, self.__attrname, u"")
+
+    def __set__(self, inst, value):
+        if not isinstance(value, unicode):
+            raise TypeError("Element must be unicode")
+        context = inst._ZDCPartialAnnotatableAdapter__context
+        oldvalue = getattr(context, self.__attrname, None)
+        if oldvalue != value:
+            setattr(context, self.__attrname, value)
+
 def partialAnnotatableAdapterFactory(direct_fields):
     if not direct_fields:
         raise ValueError("only use partialAnnotatableAdapterFactory()"
@@ -101,24 +122,3 @@ def partialAnnotatableAdapterFactory(direct_fields):
         setattr(ZDCPartialAnnotatableAdapter, dcname, prop)
 
     return ZDCPartialAnnotatableAdapter
-
-
-class DirectProperty(object):
-
-    def __init__(self, name, attrname):
-        self.__name__ = name
-        self.__attrname = attrname
-
-    def __get__(self, inst, klass):
-        if inst is None:
-            return self
-        context = inst._ZDCPartialAnnotatableAdapter__context
-        return getattr(context, self.__attrname, u"")
-
-    def __set__(self, inst, value):
-        if not isinstance(value, unicode):
-            raise TypeError("Element must be unicode")
-        context = inst._ZDCPartialAnnotatableAdapter__context
-        oldvalue = getattr(context, self.__attrname, None)
-        if oldvalue != value:
-            setattr(context, self.__attrname, value)
