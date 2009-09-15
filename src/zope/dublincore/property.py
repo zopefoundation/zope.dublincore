@@ -12,14 +12,10 @@
 #
 ##############################################################################
 """
-$Id: $
+$Id$
 """
 __docformat__ = 'restructuredtext'
-
-import re,os
-
 from zope import schema
-from zope import interface
 
 from zope.dublincore.interfaces import IZopeDublinCore
 from zope.dublincore.zopedublincore import SequenceProperty

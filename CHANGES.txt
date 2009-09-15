@@ -1,12 +1,20 @@
 Changes
 =======
 
-3.4.3 (unreleased)
+3.5.0 (unreleased)
 ------------------
 
-- Removed use of zope.app.component in testing.
+- Add missing dependencies.
 
-- Include browser configuration only if zope.app.publisher is installed.
+- Get rid of any testing dependencies beyond zope.testing.
+
+- Include browser ZCML configuration only if zope.browserpage is installed.
+
+- Specify i18n domain in package's ``configure.zcml``, because we use message
+  IDs for permission titles.
+
+- Remove unused imports, fix one test that was inactive because of being
+  overriden by another one by a mistake.
 
 3.4.2 (2009-01-31)
 ------------------

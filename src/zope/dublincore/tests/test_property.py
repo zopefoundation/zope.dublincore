@@ -13,7 +13,7 @@
 ##############################################################################
 """Test the Dublin Core Property implementation
 
-$Id: $
+$Id$
 """
 __docformat__ = "reStructuredText"
 
@@ -23,24 +23,21 @@ import unittest
 from zope import component
 
 from zope.testing.doctestunit import DocFileSuite
+from zope.testing import cleanup
 
-from zope.app.testing import setup, placelesssetup
-from zope.dublincore import annotatableadapter
+from zope.annotation.attribute import AttributeAnnotations
 from zope.dublincore import testing
-from zope.dublincore.interfaces import IWriteZopeDublinCore
 
 
 def setUp(test):
-    setup.placefulSetUp()
-    setup.setUpAnnotations()
+    cleanup.setUp()
+    component.provideAdapter(AttributeAnnotations)
     testing.setUpDublinCore()
 
 def tearDown(test):
-    setup.placefulTearDown()
-
+    cleanup.tearDown()
 
 def test_suite():
-
     return unittest.TestSuite(
         (
         DocFileSuite('../property.txt',
@@ -49,6 +46,3 @@ def test_suite():
                      optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
                      ),
         ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

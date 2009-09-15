@@ -80,7 +80,6 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         self.assertEqual(adapter._mapping, {})
 
     def test_ctor_w_existing_DC_annotations(self):
-        from zope.dublincore.annotatableadapter import DCkey
         DCDATA = {'title': 'TITLE'}
         self._registerAnnotations(DCDATA)
         context = self._makeContext()
