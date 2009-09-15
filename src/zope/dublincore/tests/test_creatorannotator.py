@@ -94,7 +94,7 @@ class CreatorAnnotatorTests(unittest.TestCase):
         self._callFUT(event)
         self.assertEqual(context.creators, ('bharney', 'phred',))
 
-    def test_w_request_w_existing_creator_nomatch(self):
+    def test_w_request_w_existing_creator_match(self):
         context, event = self._makeContextAndEvent()
         context.creators = ('bharney', 'phred')
         self._setPrincipal('phred')
