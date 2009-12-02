@@ -17,7 +17,6 @@ $Id$
 """
 __docformat__ = 'restructuredtext'
 
-from zope.annotation.interfaces import IAnnotatable
 from zope.interface import Interface
 from zope.schema import Text, TextLine, Datetime, Tuple
 
@@ -464,11 +463,3 @@ class IWriteZopeDublinCore(
     IWritableGeneralDublinCore,
     ):
     """Zope Dublin Core properties with generate update support"""
-
-
-class IZopeDublinCoreAnnotatable(IAnnotatable):
-    """Objects that can be annotated with Zope Dublin-Core meta data
-
-    This is a marker interface that indicates the intent to have
-    Zope Dublin-Core meta data associated with an object.
-    """

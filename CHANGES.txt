@@ -4,7 +4,8 @@ Changes
 3.5.1 (unreleased)
 ------------------
 
-- ...
+- Removed the marker interface IZopeDublinCoreAnnotatable which doesn't seem
+  to be used.
 
 3.5.0 (2009-09-15)
 ------------------
