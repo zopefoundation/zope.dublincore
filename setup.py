@@ -41,11 +41,12 @@ setup(
     namespace_packages=['zope'],
     include_package_data=True,
     extras_require=dict(
-        test=['zope.testing',]
+        test=['zope.testing',
+              'zope.annotation',
+              ]
         ),
     install_requires = ['setuptools',
                         'pytz',
-                        'zope.annotation',
                         'zope.component',
                         'zope.datetime',
                         'zope.interface',

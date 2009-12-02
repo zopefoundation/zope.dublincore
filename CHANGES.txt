@@ -7,6 +7,10 @@ Changes
 - Removed the marker interface IZopeDublinCoreAnnotatable which doesn't seem
   to be used.
 
+- Made the registration of ZDCAnnotatableAdapter conditional, lifting the
+  dependency on zope.annotation and thereby the ZODB, leaving it as a test
+  dependency.
+
 3.5.0 (2009-09-15)
 ------------------
 
