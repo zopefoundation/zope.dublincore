@@ -20,20 +20,20 @@ by simply defining a property as DCProperty.
   >>> obj.title
   u'My title'
 
-Let's see if the title is really stored in dublin core :
+Let's see if the title is really stored in dublin core:
 
   >>> from zope.dublincore.interfaces import IZopeDublinCore
   >>> IZopeDublinCore(obj).title
   u'My title'
 
 Even if a dublin core property is a list property we can set and get the
-property as scalar type :
+property as scalar type:
 
   >>> obj.author = u'me'
   >>> obj.author
   u'me'
 
-DCListProperty acts on the list :
+DCListProperty acts on the list:
 
   >>> obj.authors
   (u'me',)
