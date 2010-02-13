@@ -17,7 +17,7 @@ $Id$
 """
 import unittest
 
-from zope.testing.doctestunit import DocTestSuite
+from doctest import DocTestSuite
 from zope.dublincore.dcsv import encode, decode
 
 
