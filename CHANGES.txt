@@ -1,14 +1,17 @@
+=======
 Changes
 =======
 
 3.6.1 (unreleased)
-------------------
+==================
 
-- Nothing changed yet.
+- Added tests for ``zope.dublincore.timeannotators``.
+
+- Added not declared dependency on ``zope.lifecycleevent``.
 
 
 3.6.0 (2009-12-02)
-------------------
+==================
 
 - Removed the marker interface IZopeDublinCoreAnnotatable which doesn't seem
   to be used.
@@ -18,7 +21,7 @@ Changes
   dependency.
 
 3.5.0 (2009-09-15)
-------------------
+==================
 
 - Add missing dependencies.
 
@@ -33,24 +36,24 @@ Changes
   overriden by another one by a mistake.
 
 3.4.2 (2009-01-31)
-------------------
+==================
 
 - Declare dependency on zope.datetime.
 
 3.4.1 (2009-01-26)
-------------------
+==================
 
 - Test dependencies are declared in a `test` extra now.
 
 - Fix: Make CreatorAnnotator not to fail if participation principal is None
 
 3.4.0 (2007-09-28)
-------------------
+==================
 
 No further changes since 3.4.0a1.
 
 3.4.0a1 (2007-04-22)
---------------------
+====================
 
 Initial release as a separate project, corresponds to zope.dublincore
 from Zope 3.4.0a1

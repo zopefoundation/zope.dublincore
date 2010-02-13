@@ -21,14 +21,28 @@
 $Id$
 """
 from setuptools import setup, find_packages
+import os.path
 
-long_description = (open('README.txt').read() +
-                    '\n\n' +
-                    open('CHANGES.txt').read())
+def read(*path):
+    return open(os.path.join(*path)).read() + '\n\n'
+
+version = '3.6.1dev'
+
+long_description = (
+    '.. contents::\n\n' +
+    '========\n' +
+    'Overview\n' +
+    '========\n' +
+    read('README.txt') +
+    read('src', 'zope', 'dublincore', 'property.txt') +
+    read('src', 'zope', 'dublincore', 'tests', 'partial.txt') +
+    read('src', 'zope', 'dublincore', 'tests', 'timeannotators.txt') +
+    read('CHANGES.txt')
+    )
 
 setup(
     name="zope.dublincore",
-    version = '3.6.1dev',
+    version=version,
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
@@ -50,6 +64,7 @@ setup(
                         'zope.component',
                         'zope.datetime',
                         'zope.interface',
+                        'zope.lifecycleevent',
                         'zope.location',
                         'zope.schema',
                         'zope.security',
