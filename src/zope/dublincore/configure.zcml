@@ -5,14 +5,14 @@
     >
 
   <permission 
-      id="zope.app.dublincore.view" 
-      title="[zope.app.dublincore.view-permission] 
+      id="zope.dublincore.view" 
+      title="[zope.dublincore.view-permission] 
              View Dublin-Core Meta Data "
       />
 
   <permission 
-      id="zope.app.dublincore.change" 
-      title="[zope.app.dublincore.change-permission] 
+      id="zope.dublincore.change" 
+      title="[zope.dublincore.change-permission] 
              Change Dublin-Core Meta Data "
       />
 
