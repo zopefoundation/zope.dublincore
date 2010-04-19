@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2007 Zope Corporation and Contributors.
+# Copyright (c) 2007 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -47,7 +47,7 @@ setup(
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
     long_description=long_description,
-    author='Zope Corporation and Contributors',
+    author='Zope Foundatoin and Contributors',
     author_email='zope-dev@zope.org',
 
     packages=find_packages('src'),
