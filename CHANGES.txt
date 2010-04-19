@@ -2,7 +2,7 @@
 Changes
 =======
 
-3.6.1 (unreleased)
+3.6.1 (2010-04-19)
 ==================
 
 - Added tests for ``zope.dublincore.timeannotators``.
@@ -20,6 +20,7 @@ Changes
   dependency on zope.annotation and thereby the ZODB, leaving it as a test
   dependency.
 
+
 3.5.0 (2009-09-15)
 ==================
 
@@ -35,10 +36,12 @@ Changes
 - Remove unused imports, fix one test that was inactive because of being
   overriden by another one by a mistake.
 
+
 3.4.2 (2009-01-31)
 ==================
 
 - Declare dependency on zope.datetime.
+
 
 3.4.1 (2009-01-26)
 ==================
@@ -47,10 +50,12 @@ Changes
 
 - Fix: Make CreatorAnnotator not to fail if participation principal is None
 
+
 3.4.0 (2007-09-28)
 ==================
 
 No further changes since 3.4.0a1.
+
 
 3.4.0a1 (2007-04-22)
 ====================
