@@ -2,17 +2,20 @@
 Changes
 =======
 
+
 3.6.2 (2010-04-20)
 ==================
 
 - Repaired regression introduced in 3.6.1:  the renamed permissions were
   not updated in other ZCML files.
 
+
 3.6.1 (2010-04-19)
 ==================
 
-- Renamed the ``zope.app.dublincore.*`` permissions to ``zope.dublincore.*`.
-  Applications may need to fix up grants based on the old permissions.
+- Renamed the ``zope.app.dublincore.*`` permissions to
+  ``zope.dublincore.*``.  Applications may need to fix up grants based on the
+  old permissions.
 
 - Added tests for ``zope.dublincore.timeannotators``.
 
