@@ -2,6 +2,12 @@
 Changes
 =======
 
+3.6.2 (2010-04-20)
+==================
+
+- Repaired regression introduced in 3.6.1:  the renamed permissions were
+  not updated in other ZCML files.
+
 3.6.1 (2010-04-19)
 ==================
 

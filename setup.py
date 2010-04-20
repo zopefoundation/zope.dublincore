@@ -26,7 +26,7 @@ import os.path
 def read(*path):
     return open(os.path.join(*path)).read() + '\n\n'
 
-version = '3.6.1'
+version = '3.6.2'
 
 long_description = (
     '.. contents::\n\n' +
