@@ -8,7 +8,7 @@
 
   <browser:pages
       for="zope.annotation.interfaces.IAnnotatable"
-      permission="zope.app.dublincore.change"
+      permission="zope.dublincore.change"
       class=".metadataedit.MetaDataEdit"
       >
 
