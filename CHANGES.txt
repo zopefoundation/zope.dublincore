@@ -6,6 +6,10 @@ Changes
 3.6.3 (unreleased)
 ==================
 
+- Restored backward-compatible ``zope.app.dublincore.*`` permissions,
+  mapping them onto the new permissions using the ``<meta:redefinePermission>``
+  directive.  These shims will be removed in 3.7.0.
+
 - Added unit (not functional) test for loadability of ``configure.zcml``.
 
 
