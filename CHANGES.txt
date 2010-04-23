@@ -6,7 +6,9 @@ Changes
 3.7.0 (unreleased)
 ==================
 
-- TBD
+- Removed backward-compatibility shims for deprecated ``zope.app.dublincore.*``
+  permissions.
+
 
 3.6.3 (2010-04-23)
 ==================

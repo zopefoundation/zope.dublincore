@@ -20,28 +20,6 @@
              Change Dublin-Core Meta Data "
       />
 
-  <!-- BBB:  these compatibility shims go away in 3.7.0 -->
-  <permission 
-      id="zope.app.dublincore.view"
-      title="Deprecated:  use zope.dublincore.view"
-      />
-
-  <meta:redefinePermission
-      from="zope.app.dublincore.view"
-      to="zope.dublincore.view" 
-      />
-
-  <permission 
-      id="zope.app.dublincore.change"
-      title="Deprecated:  use zope.dublincore.change"
-      />
-
-  <meta:redefinePermission
-      from="zope.app.dublincore.change"
-      to="zope.dublincore.change" 
-      />
-  <!-- end BBB -->
-
   <include file="security.zcml" />
 
   <adapter
