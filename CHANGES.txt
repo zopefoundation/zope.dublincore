@@ -6,7 +6,7 @@ Changes
 3.6.3 (unreleased)
 ==================
 
-- TBD
+- Added unit (not functional) test for loadability of ``configure.zcml``.
 
 
 3.6.2 (2010-04-20)
