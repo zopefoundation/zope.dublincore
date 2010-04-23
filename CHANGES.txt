@@ -3,7 +3,7 @@ Changes
 =======
 
 
-3.6.3 (unreleased)
+3.6.3 (2010-04-23)
 ==================
 
 - Restored backward-compatible ``zope.app.dublincore.*`` permissions,
