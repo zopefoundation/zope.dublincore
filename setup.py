@@ -47,7 +47,7 @@ setup(
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
     long_description=long_description,
-    author='Zope Foundatoin and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
 
     packages=find_packages('src'),
