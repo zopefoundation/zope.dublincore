@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Dublin Core Meta Data View
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Object that takes care of annotating the dublin core creator field.
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

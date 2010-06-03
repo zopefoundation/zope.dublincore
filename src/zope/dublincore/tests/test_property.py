@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test the Dublin Core Property implementation
-
-$Id$
 """
 __docformat__ = "reStructuredText"
 

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test Zope's Dublin Core implementation
-
-$Id$
 """
 
 from unittest import TestCase, TestSuite, main, makeSuite

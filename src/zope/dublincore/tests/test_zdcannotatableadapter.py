@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test the Dublin Core annotations adapter.
-
-$Id$
 """
 import unittest
 

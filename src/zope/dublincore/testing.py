@@ -11,8 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""
-$Id: $
+"""Testing support
 """
 __docformat__ = 'restructuredtext'
 

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test loading of Dublin Core metadata from the XML representation.
-
-$Id$
 """
 import unittest
 

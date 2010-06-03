@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Support information for qualified Dublin Core Metadata.
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

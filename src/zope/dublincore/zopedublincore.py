@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Zope's Dublin Core Implementation
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

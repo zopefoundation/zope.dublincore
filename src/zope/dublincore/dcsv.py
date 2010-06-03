@@ -17,8 +17,6 @@ DCSV is specified in 'DCMI DCSV: A syntax for writing a list of
 labelled values in a text string', at:
 
 http://dublincore.org/documents/dcmi-dcsv/
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

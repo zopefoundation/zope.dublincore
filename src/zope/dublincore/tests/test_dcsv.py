@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test the Dublib Core Structured Value support functions.
-
-$Id$
 """
 import unittest
 

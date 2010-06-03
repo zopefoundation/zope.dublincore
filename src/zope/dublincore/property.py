@@ -11,8 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""
-$Id$
+"""Base DublinCore property adapter.
 """
 __docformat__ = 'restructuredtext'
 from zope import schema

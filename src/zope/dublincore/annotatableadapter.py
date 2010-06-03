@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Dublin Core Annotatable Adapter
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

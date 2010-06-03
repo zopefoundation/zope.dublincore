@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Objects that take care of annotating dublin core meta data times
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

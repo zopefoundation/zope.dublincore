@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Tests annotatableadapter.
-
-$Id: test_creatorannotator.py 101331 2009-06-29 20:58:01Z tseaver $
 """
 import unittest
 

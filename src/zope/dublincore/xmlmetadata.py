@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Dublin Core XML data parser and writer
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
