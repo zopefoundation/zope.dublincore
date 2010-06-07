@@ -49,9 +49,4 @@
       for="zope.lifecycleevent.interfaces.IObjectCreatedEvent"
       />
 
-
-  <!-- Include browser package -->
-
-  <include package=".browser" />
-
 </configure>

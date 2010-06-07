@@ -9,6 +9,8 @@ Changes
 - Removed backward-compatibility shims for deprecated ``zope.app.dublincore.*``
   permissions.
 
+- Removed include the zcml configuration of ``zope.dublincore.browser``.
+
 
 3.6.3 (2010-04-23)
 ==================
