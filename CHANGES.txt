@@ -3,7 +3,7 @@ Changes
 =======
 
 
-3.7.0 (unreleased)
+3.7.0 (2010-08-19)
 ==================
 
 - Removed backward-compatibility shims for deprecated ``zope.app.dublincore.*``
