@@ -11,6 +11,8 @@ Changes
 
 - Removed include the zcml configuration of ``zope.dublincore.browser``.
 
+- Using python`s doctest instead of deprecated ``zope.testing.doctest``.
+
 
 3.6.3 (2010-04-23)
 ==================
