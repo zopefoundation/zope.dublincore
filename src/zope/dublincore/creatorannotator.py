@@ -19,9 +19,12 @@ from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.management import queryInteraction
 from zope.security.proxy import removeSecurityProxy
 
-def CreatorAnnotator(event):
+def CreatorAnnotator(object, event=None):
     """Update Dublin-Core creator property"""
-    dc = IZopeDublinCore(event.object, None)
+    if event is None:
+        # annotator was only called the event as only argument
+        object = object.object
+    dc = IZopeDublinCore(object, None)
     # Principals that can create objects do not necessarily have
     # 'zope.app.dublincore.change' permission.
     # https://bugs.launchpad.net/zope3/+bug/98124

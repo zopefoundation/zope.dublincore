@@ -21,8 +21,11 @@ from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.proxy import removeSecurityProxy
 
 
-def ModifiedAnnotator(event):
-    dc = IZopeDublinCore(event.object, None)
+def ModifiedAnnotator(object, event=None):
+    if event is None:
+        # annotator was only called the event as only argument
+        object = object.object
+    dc = IZopeDublinCore(object, None)
     if dc is not None:
         # Principals that can modify objects do not necessary have permissions
         # to arbitrarily modify DC data, see issue 373
@@ -30,8 +33,11 @@ def ModifiedAnnotator(event):
         dc.modified = datetime.now(pytz.utc)
 
 
-def CreatedAnnotator(event):
-    dc = IZopeDublinCore(event.object, None)
+def CreatedAnnotator(object, event=None):
+    if event is None:
+        # annotator was only called the event as only argument
+        object = object.object
+    dc = IZopeDublinCore(object, None)
     if dc is not None:
         # Principals that can create objects do not necessary have permissions
         # to arbitrarily modify DC data, see issue 373
