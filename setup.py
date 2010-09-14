@@ -24,7 +24,7 @@ import os.path
 def read(*path):
     return open(os.path.join(*path)).read() + '\n\n'
 
-version = '3.7.1dev'
+version = '3.8.0dev'
 
 long_description = (
     '.. contents::\n\n' +
@@ -53,7 +53,7 @@ setup(
     namespace_packages=['zope'],
     include_package_data=True,
     extras_require=dict(
-        test=['zope.testing',
+        test=['zope.testing >= 3.8',
               'zope.annotation',
               ]
         ),

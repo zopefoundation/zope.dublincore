@@ -8,15 +8,15 @@
   <include package="zope.component" file="meta.zcml" />
   <include package="zope.security" file="meta.zcml" />
 
-  <permission 
-      id="zope.dublincore.view" 
-      title="[zope.dublincore.view-permission] 
+  <permission
+      id="zope.dublincore.view"
+      title="[zope.dublincore.view-permission]
              View Dublin-Core Meta Data "
       />
 
-  <permission 
-      id="zope.dublincore.change" 
-      title="[zope.dublincore.change-permission] 
+  <permission
+      id="zope.dublincore.change"
+      title="[zope.dublincore.change-permission]
              Change Dublin-Core Meta Data "
       />
 
@@ -33,20 +33,40 @@
       handler=".timeannotators.ModifiedAnnotator"
       for="zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       />
+  <subscriber
+      handler=".timeannotators.ModifiedAnnotator"
+      for="*
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      />
 
   <subscriber
       handler=".timeannotators.CreatedAnnotator"
       for="zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+      />
+  <subscriber
+      handler=".timeannotators.CreatedAnnotator"
+      for="*
+           zope.lifecycleevent.interfaces.IObjectCreatedEvent"
       />
 
   <subscriber
       handler=".creatorannotator.CreatorAnnotator"
       for="zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       />
+  <subscriber
+      handler=".creatorannotator.CreatorAnnotator"
+      for="*
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      />
 
   <subscriber
       handler=".creatorannotator.CreatorAnnotator"
       for="zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+      />
+  <subscriber
+      handler=".creatorannotator.CreatorAnnotator"
+      for="*
+           zope.lifecycleevent.interfaces.IObjectCreatedEvent"
       />
 
 </configure>

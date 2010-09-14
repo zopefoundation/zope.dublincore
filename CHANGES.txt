@@ -6,7 +6,14 @@ Changes
 3.7.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Registered the annotators also for (object, event), so copy-pasting a
+  folder, changes the dublin core data of the contained objects, too. The
+  changed annotators are the following:
+
+  - ``zope.dublincore.timeannotators.ModifiedAnnotator``
+  - ``zope.dublincore.timeannotators.CreatedAnnotator``
+  - ``zope.dublincore.creatorannotator.CreatorAnnotator``
+
 
 
 3.7.0 (2010-08-19)

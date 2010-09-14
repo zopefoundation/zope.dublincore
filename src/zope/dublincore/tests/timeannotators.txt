@@ -12,7 +12,7 @@ Set up
 ...     modified = None
 
 The annotations are stored on the ``IZopeDublinCore`` adapter. This dummy adapter
-reads and writes from/to the context object. 
+reads and writes from/to the context object.
 
 >>> import zope.component
 >>> import zope.dublincore.interfaces
@@ -55,6 +55,25 @@ datetime.datetime(<DATETIME>, tzinfo=<UTC>)
 >>> content.modified
 datetime.datetime(<DATETIME>, tzinfo=<UTC>)
 
+The created annotator can also be registered for (object, event):
+
+>>> zope.component.provideHandler(
+...     zope.dublincore.timeannotators.CreatedAnnotator,
+...     (None,
+...      zope.lifecycleevent.interfaces.IObjectCreatedEvent,))
+>>> content = Content()
+>>> ignored = zope.component.subscribers(
+...    (content, zope.lifecycleevent.ObjectCreatedEvent(content)), None)
+
+Both ``created`` and ``modified`` get set this way, too:
+
+>>> content.created
+datetime.datetime(<DATETIME>, tzinfo=<UTC>)
+>>> content.modified
+datetime.datetime(<DATETIME>, tzinfo=<UTC>)
+
+
+
 Modified annotator
 ==================
 
@@ -76,5 +95,20 @@ None
 >>> content.modified
 datetime.datetime(<DATETIME>, tzinfo=<UTC>)
 
+The modified annotator can also be registered for (object, event):
 
+>>> zope.component.provideHandler(
+...     zope.dublincore.timeannotators.ModifiedAnnotator,
+...     (None,
+...      zope.lifecycleevent.interfaces.IObjectModifiedEvent,))
 
+>>> content = Content()
+>>> ignored = zope.component.subscribers(
+...    (content, zope.lifecycleevent.ObjectModifiedEvent(content)), None)
+
+``modified`` gets set, this way, too:
+
+>>> print content.created
+None
+>>> content.modified
+datetime.datetime(<DATETIME>, tzinfo=<UTC>)

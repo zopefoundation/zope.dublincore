@@ -106,6 +106,14 @@ class CreatorAnnotatorTests(unittest.TestCase):
         self._callFUT(event)
         self.assertEqual(context.creators, ('bharney', 'phred',))
 
+
+class CreatorAnnotatorObjectEventTests(CreatorAnnotatorTests):
+
+    def _callFUT(self, event):
+        from zope.dublincore.creatorannotator import CreatorAnnotator
+        return CreatorAnnotator(event.object, event)
+
+
 class DummyDCAdapter(object):
 
     def _getcreator(self):
@@ -123,9 +131,3 @@ class DummyRequest(object):
     def __init__(self, principal):
         self.principal = principal
         self.interaction = None
-
-
-def test_suite():
-    return unittest.TestSuite((
-            unittest.makeSuite(CreatorAnnotatorTests),
-        ))
