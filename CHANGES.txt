@@ -3,7 +3,7 @@ Changes
 =======
 
 
-3.7.1 (unreleased)
+3.8.0 (2010-09-14)
 ==================
 
 - Registered the annotators also for (object, event), so copy-pasting a
