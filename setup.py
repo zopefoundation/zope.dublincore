@@ -66,7 +66,7 @@ setup(
                         'zope.lifecycleevent',
                         'zope.location',
                         'zope.schema',
-                        'zope.security[zcml]',
+                        'zope.security[zcml]>=3.8.0dev',
                         ],
     zip_safe = False
     )
