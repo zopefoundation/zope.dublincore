@@ -60,13 +60,13 @@ setup(
         ),
     install_requires = ['setuptools',
                         'pytz',
-                        'zope.component',
+                        'zope.component[zcml]',
                         'zope.datetime',
                         'zope.interface',
                         'zope.lifecycleevent',
                         'zope.location',
                         'zope.schema',
-                        'zope.security',
+                        'zope.security[zcml]',
                         ],
     zip_safe = False
     )
