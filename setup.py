@@ -55,6 +55,7 @@ setup(
     extras_require=dict(
         test=['zope.testing >= 3.8',
               'zope.annotation',
+              'zope.configuration',
               ]
         ),
     install_requires = ['setuptools',
