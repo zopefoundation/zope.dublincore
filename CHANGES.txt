@@ -6,7 +6,8 @@ Changes
 3.8.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Added missing test dependency on zope.configuration and missing dependency
+  of security.zcml on zope.security's meta.zcml.
 
 
 3.8.0 (2010-09-14)
