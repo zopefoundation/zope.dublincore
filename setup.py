@@ -24,7 +24,7 @@ import os.path
 def read(*path):
     return open(os.path.join(*path)).read() + '\n\n'
 
-version = '3.8.1dev'
+version = '3.8.1'
 
 long_description = (
     '.. contents::\n\n' +
@@ -66,7 +66,7 @@ setup(
                         'zope.lifecycleevent',
                         'zope.location',
                         'zope.schema',
-                        'zope.security[zcml]>=3.8.0dev',
+                        'zope.security[zcml]>=3.8',
                         ],
     zip_safe = False
     )

@@ -2,8 +2,7 @@
 Changes
 =======
 
-
-3.8.1 (unreleased)
+3.8.1 (2010-12-14)
 ==================
 
 - Added missing test dependency on zope.configuration and missing dependency
@@ -20,7 +19,6 @@ Changes
   - ``zope.dublincore.timeannotators.ModifiedAnnotator``
   - ``zope.dublincore.timeannotators.CreatedAnnotator``
   - ``zope.dublincore.creatorannotator.CreatorAnnotator``
-
 
 
 3.7.0 (2010-08-19)
