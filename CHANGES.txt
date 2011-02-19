@@ -2,8 +2,11 @@
 Changes
 =======
 
-3.8.2 (unreleased)
+3.8.2 (2010-02-19)
 ==================
+
+- Updated <DATETIME> regex normalizer to guard against test failure when
+  a datetime's microseconds value is zero.
 
 
 3.8.1 (2010-12-14)
