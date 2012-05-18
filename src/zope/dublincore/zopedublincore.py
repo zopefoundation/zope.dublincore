@@ -17,7 +17,7 @@ __docformat__ = 'restructuredtext'
 
 from datetime import datetime
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.datetime import parseDatetimetz
 from zope.dublincore.interfaces import IZopeDublinCore
 
@@ -88,6 +88,7 @@ class SequenceProperty(SimpleProperty):
         inst._changed()
         inst._mapping[self.__name__] = value
 
+@implementer(IZopeDublinCore)
 class ZopeDublinCore(object):
     """Zope Dublin Core Mixin
 
@@ -95,8 +96,6 @@ class ZopeDublinCore(object):
 
     Just mix with `Persistence` to get a persistent version.
     """
-
-    implements(IZopeDublinCore)
 
     def __init__(self, mapping=None):
         if mapping is None:

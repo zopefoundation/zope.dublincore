@@ -17,10 +17,11 @@ import unittest
 
 from zope.annotation.interfaces import IAnnotations
 from zope.component.testing import PlacelessSetup
-from zope.interface import implements
+from zope.interface import implementer
 
+@implementer(IAnnotations)
 class TestAnnotations(dict):
-    implements(IAnnotations)
+    pass
 
 class DublinCoreAdapterTest(PlacelessSetup, unittest.TestCase):
 

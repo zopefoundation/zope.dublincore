@@ -24,7 +24,7 @@ import os.path
 def read(*path):
     return open(os.path.join(*path)).read() + '\n\n'
 
-version = '3.8.3dev'
+version = '4.0.0dev'
 
 long_description = (
     '.. contents::\n\n' +
@@ -47,6 +47,19 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Zope Public License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Software Development',
+        ],
 
     packages=find_packages('src'),
     package_dir={'':'src'},

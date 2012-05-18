@@ -19,8 +19,8 @@ from persistent.dict import PersistentDict
 
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapts
-from zope.interface import implements
+from zope.component import adapter
+from zope.interface import implementer
 from zope.location import Location
 from zope.dublincore.interfaces import IWriteZopeDublinCore
 from zope.dublincore.zopedublincore import DateProperty
@@ -30,10 +30,10 @@ from zope.dublincore.zopedublincore import ZopeDublinCore
 DCkey = "zope.app.dublincore.ZopeDublinCore"
 
 
+@implementer(IWriteZopeDublinCore)
+@adapter(IAnnotatable)
 class ZDCAnnotatableAdapter(ZopeDublinCore, Location):
     """Adapt annotatable objects to Zope Dublin Core."""
-    implements(IWriteZopeDublinCore)
-    adapts(IAnnotatable)
 
     annotations = None
 

@@ -48,10 +48,10 @@ class CreatorAnnotatorTests(unittest.TestCase):
 
     def _makeContextAndEvent(self):
 
-        from zope.interface import implements
+        from zope.interface import implementer
 
+        @implementer(self._iface)
         class DummyDublinCore(object):
-            implements(self._iface)
             creators = ()
 
         class DummyEvent(object):

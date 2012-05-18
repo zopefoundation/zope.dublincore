@@ -20,11 +20,9 @@ Dublin Core `title` field::
   >>> import zope.interface
   >>> import zope.annotation.interfaces
 
-  >>> class Content(object):
-  ...
-  ...     zope.interface.implements(
+  >>> @zope.interface.implementer(
   ...         zope.annotation.interfaces.IAttributeAnnotatable)
-  ...
+  ... class Content(object):
   ...     title = u""
   ...     description = u""
 
@@ -92,11 +90,9 @@ attribute names on the content object.
 Let's look at an example where we want the `abstract` attribute on the
 content object to be used for the `description` Dublin Core field::
 
-  >>> class Content(object):
-  ...
-  ...     zope.interface.implements(
+  >>> @zope.interface.implementer(
   ...         zope.annotation.interfaces.IAttributeAnnotatable)
-  ...
+  ... class Content(object):
   ...     abstract = u""
 
 We can create the adapter factory by passing a mapping to

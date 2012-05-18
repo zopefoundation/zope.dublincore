@@ -9,8 +9,8 @@ by simply defining a property as DCProperty.
 
   >>> from zope import interface
   >>> from zope.annotation.interfaces import IAttributeAnnotatable
-  >>> class DC(object):
-  ...     interface.implements(IAttributeAnnotatable)
+  >>> @interface.implementer(IAttributeAnnotatable)
+  ... class DC(object):
   ...     title   = property.DCProperty('title')
   ...     author  = property.DCProperty('creators')
   ...     authors = property.DCListProperty('creators')
