@@ -24,7 +24,20 @@ import os.path
 def read(*path):
     return open(os.path.join(*path)).read() + '\n\n'
 
-version = '4.0.0dev'
+def alltests():
+    import os
+    import sys
+    import unittest
+    # use the zope.testrunner machinery to find all the
+    # test suites we've put under ourselves
+    import zope.testrunner.find
+    import zope.testrunner.options
+    here = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
+    args = sys.argv[:]
+    defaults = ["--test-path", here]
+    options = zope.testrunner.options.get_options(args, defaults)
+    suites = list(zope.testrunner.find.find_suites(options))
+    return unittest.TestSuite(suites)
 
 long_description = (
     '.. contents::\n\n' +
@@ -40,7 +53,7 @@ long_description = (
 
 setup(
     name="zope.dublincore",
-    version=version,
+    version='4.0.0dev',
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
@@ -51,12 +64,15 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
         ],
@@ -67,19 +83,28 @@ setup(
     include_package_data=True,
     extras_require=dict(
         test=['zope.testing >= 3.8',
+              'zope.testrunner',
               'zope.annotation',
               'zope.configuration',
               ]
         ),
-    install_requires = ['setuptools',
-                        'pytz',
-                        'zope.component[zcml]',
-                        'zope.datetime',
-                        'zope.interface',
-                        'zope.lifecycleevent',
-                        'zope.location',
-                        'zope.schema',
-                        'zope.security[zcml]>=3.8',
-                        ],
+    install_requires = [
+        'pytz',
+        'setuptools',
+        'six',
+        'zope.component[zcml]',
+        'zope.datetime',
+        'zope.interface',
+        'zope.lifecycleevent',
+        'zope.location',
+        'zope.schema',
+        'zope.security[zcml]>=3.8',
+        ],
+    tests_require = [
+        'zope.testing',
+        'zope.testrunner',
+        'zope.annotation',
+        'zope.configuration'],
+    test_suite = '__main__.alltests',
     zip_safe = False
     )

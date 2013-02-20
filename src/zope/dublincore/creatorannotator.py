@@ -19,6 +19,12 @@ from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.management import queryInteraction
 from zope.security.proxy import removeSecurityProxy
 
+try:
+    unicode
+except NameError:
+    # Py3: Make unicode available.
+    unicode = str
+
 def CreatorAnnotator(object, event=None):
     """Update Dublin-Core creator property"""
     if event is None:

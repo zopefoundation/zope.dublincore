@@ -34,12 +34,10 @@ def tearDown(test):
 
 
 def test_suite():
-    return unittest.TestSuite(
-        (
-        doctest.DocFileSuite(
-            '../property.txt',
-             setUp=setUp,
-             tearDown=tearDown,
-           optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-           ),
+    return unittest.TestSuite((
+            doctest.DocFileSuite(
+                '../property.txt',
+                setUp=setUp, tearDown=tearDown, checker=testing.checker,
+                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                ),
         ))

@@ -61,7 +61,7 @@ class DCProperty(object):
             else:
                 value = (value,)
         field.validate(value)
-        if field.readonly and inst.__dict__.has_key(name):
+        if field.readonly and name in inst.__dict__:
             raise ValueError(name, 'field is readonly')
         setattr(inst, name, value)
 
@@ -98,7 +98,7 @@ class DCListProperty(DCProperty):
         if isinstance(field, schema.Tuple):
             value = tuple(value)
         field.validate(value)
-        if field.readonly and inst.__dict__.has_key(name):
+        if field.readonly and name in inst.__dict__:
             raise ValueError(name, 'field is readonly')
         setattr(inst, name, value)
 

@@ -20,6 +20,13 @@ from datetime import datetime
 from zope.interface import implementer
 from zope.datetime import parseDatetimetz
 from zope.dublincore.interfaces import IZopeDublinCore
+import six
+
+try:
+    unicode
+except NameError:
+    # Py3: Make unicode available.
+    unicode = str
 
 class SimpleProperty(object):
 
@@ -67,7 +74,10 @@ class DateProperty(ScalarProperty):
         if not isinstance(value, datetime):
             raise TypeError("Element must be %s", datetime)
 
-        value = unicode(value.isoformat('T'), 'ascii')
+        value = value.isoformat('T')
+        # Py3: Python 2 support, where isformat returned bytes.
+        if isinstance(value, bytes):
+            value = value.decode('ascii')
 
         super(DateProperty, self).__set__(inst, value)
 
@@ -328,13 +338,13 @@ def _set_qualified(self, name, qvalue):
         data[qualification] = data.get(qualification, ()) + (value, )
 
     self._changed()
-    for qualification, values in data.iteritems():
+    for qualification, values in six.iteritems(data):
         qname = qualification and (name + '.' + qualification) or name
         dict[qname] = values
 
 def _get_qualified(self, name):
     result = []
-    for aname, avalue in self._mapping.iteritems():
+    for aname, avalue in six.iteritems(self._mapping):
 
         if aname == name:
             qualification = u''

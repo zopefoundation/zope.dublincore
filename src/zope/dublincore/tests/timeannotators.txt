@@ -90,7 +90,7 @@ It is registered for the ``ObjectModifiedEvent``:
 
 Only ``modified`` gets set:
 
->>> print content.created
+>>> print(content.created)
 None
 >>> content.modified
 datetime.datetime(<DATETIME>, tzinfo=<UTC>)
@@ -108,7 +108,7 @@ The modified annotator can also be registered for (object, event):
 
 ``modified`` gets set, this way, too:
 
->>> print content.created
+>>> print(content.created)
 None
 >>> content.modified
 datetime.datetime(<DATETIME>, tzinfo=<UTC>)

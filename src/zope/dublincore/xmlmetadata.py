@@ -18,10 +18,14 @@ __docformat__ = 'restructuredtext'
 import xml.sax
 import xml.sax.handler
 
-from cStringIO import StringIO
 from xml.sax.saxutils import escape, quoteattr
 
 from zope.dublincore import dcterms
+
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 
 XSI_TYPE = (dcterms.XSI_NS, "type")
@@ -44,7 +48,8 @@ class NamespaceTracker(object):
             self._mapping.update(mapping)
         self._counter = 0
 
-    def encode(self, (uri, localname)):
+    def encode(self, xxx_todo_changeme):
+        (uri, localname) = xxx_todo_changeme
         if not uri:
             return localname
         if uri not in self._mapping:
@@ -68,8 +73,7 @@ class NamespaceTracker(object):
 def dumpString(mapping):
     sio = StringIO()
     nsmap = NamespaceTracker(DEFAULT_NAMESPACE_PREFIXES)
-    items = mapping.items()
-    items.sort()
+    items = sorted(mapping.items())
     prev = None
     for name, values in items:
         name, type = dcterms.splitEncoding(name)

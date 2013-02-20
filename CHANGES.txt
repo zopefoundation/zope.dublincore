@@ -5,6 +5,8 @@ Changes
 4.0.0 (unreleased)
 ==================
 
+- Added support for Python 3.3.
+
 - Replaced deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 

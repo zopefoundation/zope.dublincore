@@ -71,7 +71,7 @@ class Test(TestCase):
             self.assertEqual(getattr(dc, pname), u'blah blah')
             self.assertEqual(getattr(dc, mname)(), u'blah blah')
 
-            self.assertRaises(Exception, setattr, dc, pname, 'foo')
+            self.assertRaises(Exception, setattr, dc, pname, b'foo')
             setattr(dc, pname, u'foo')
             self.assertEqual(getattr(dc, pname), u'foo')
             self.assertEqual(getattr(dc, mname)(), u'foo')
@@ -113,8 +113,8 @@ class Test(TestCase):
             self.assertEqual(v, [u'bar', u'baz', u'baz\u1111', u'foo'])
 
 
-            self.assertRaises(Exception, setattr, dc, pname, 'foo')
-            self.assertRaises(Exception, setattr, dc, pname, ['foo'])
+            self.assertRaises(Exception, setattr, dc, pname, b'foo')
+            self.assertRaises(Exception, setattr, dc, pname, [b'foo'])
 
             setattr(dc, pname, [u'high', u'low', u'spam', u'eggs', u'ham', ])
 

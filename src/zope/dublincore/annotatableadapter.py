@@ -26,8 +26,15 @@ from zope.dublincore.interfaces import IWriteZopeDublinCore
 from zope.dublincore.zopedublincore import DateProperty
 from zope.dublincore.zopedublincore import ScalarProperty
 from zope.dublincore.zopedublincore import ZopeDublinCore
+import six
 
 DCkey = "zope.app.dublincore.ZopeDublinCore"
+
+try:
+    unicode
+except NameError:
+    # Py3: Make unicode available.
+    unicode = str
 
 
 @implementer(IWriteZopeDublinCore)
@@ -109,7 +116,7 @@ def partialAnnotatableAdapterFactory(direct_fields):
             # can't use super() since this isn't a globally available class
             ZDCAnnotatableAdapter.__init__(self, context)
 
-    for dcname, attrname in fieldmap.iteritems():
+    for dcname, attrname in six.iteritems(fieldmap):
         oldprop = ZopeDublinCore.__dict__.get(dcname)
         if oldprop is None:
             raise ValueError("%r is not a valid DC field" % dcname)

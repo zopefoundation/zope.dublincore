@@ -16,6 +16,7 @@
 __docformat__ = 'restructuredtext'
 
 from zope.dublincore import dcsv
+import six
 
 # useful namespace URIs
 DC_NS = "http://purl.org/dc/elements/1.1/"
@@ -183,7 +184,7 @@ _prefix_to_ns = {
     }
 
 element_to_name = {}
-for name, (qname, attrs) in name_to_element.iteritems():
+for name, (qname, attrs) in six.iteritems(name_to_element):
     prefix, localname = qname.split(":")
     elem_name = _prefix_to_ns[prefix], localname
     element_to_name[elem_name] = name
