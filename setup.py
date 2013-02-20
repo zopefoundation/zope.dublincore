@@ -53,7 +53,7 @@ long_description = (
 
 setup(
     name="zope.dublincore",
-    version='4.0.0dev',
+    version='4.0.0',
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
