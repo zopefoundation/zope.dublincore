@@ -2,7 +2,7 @@
 Changes
 =======
 
-3.7.1 (unreleased)
+3.7.1 (2014-03-05)
 ==================
 
 - Backport fix of "zero milliseconds" doctests failure.
