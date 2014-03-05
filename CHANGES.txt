@@ -2,6 +2,10 @@
 Changes
 =======
 
+3.7.1 (unreleased)
+==================
+
+- Backport fix of "zero milliseconds" doctests failure.
 
 3.7.0 (2010-08-19)
 ==================

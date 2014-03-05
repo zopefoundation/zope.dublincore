@@ -20,8 +20,14 @@ import zope.testing.renormalizing
 import re
 
 datetime_re = (
-    '[0-9]{4}, [0-9]{1,2}, [0-9]{1,2}, [0-9]{1,2}, [0-9]{1,2}, [0-9]{1,2}, '
-    '[0-9]{1,6}')
+    '[0-9]{4}, '        # YYYY
+    '[0-9]{1,2}, '      # MM
+    '[0-9]{1,2}, '      # DD
+    '[0-9]{1,2}, '      # HH
+    '[0-9]{1,2}, '      # MM
+    '[0-9]{1,2}'        # SS
+    '(, [0-9]{1,6})?'   # uSec (skipped if 0)
+    )
 
 def test_suite():
     return doctest.DocFileSuite(
