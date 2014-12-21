@@ -116,7 +116,7 @@ class DirectPropertyTests(unittest.TestCase):
         prop = self._makeOne('title', 'headline')
         class Testing(object):
             title = prop
-        self.failUnless(Testing.title is prop)
+        self.assertTrue(Testing.title is prop)
 
     def test___get___via_instance(self):
         prop = self._makeOne('title', 'headline')
@@ -205,7 +205,7 @@ class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
         from zope.dublincore.annotatableadapter import DirectProperty
         klass = self._callFUT(['title'])
         prop = klass.title
-        self.failUnless(isinstance(prop, DirectProperty))
+        self.assertTrue(isinstance(prop, DirectProperty))
         self.assertEqual(prop.__name__, 'title')
         self.assertEqual(prop._DirectProperty__attrname, 'title') # XXX
 
@@ -213,7 +213,7 @@ class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
         from zope.dublincore.annotatableadapter import DirectProperty
         klass = self._callFUT({'title': 'headline'})
         prop = klass.title
-        self.failUnless(isinstance(prop, DirectProperty))
+        self.assertTrue(isinstance(prop, DirectProperty))
         self.assertEqual(prop.__name__, 'title')
         self.assertEqual(prop._DirectProperty__attrname, 'headline') # XXX
 

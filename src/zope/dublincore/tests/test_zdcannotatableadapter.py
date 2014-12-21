@@ -30,11 +30,11 @@ class DublinCoreAdapterTest(PlacelessSetup, unittest.TestCase):
         annotations = TestAnnotations()
         dc = ZDCAnnotatableAdapter(annotations)
 
-        self.failIf(annotations, "There shouldn't be any data yet")
+        self.assertFalse(annotations, "There shouldn't be any data yet")
         self.assertEqual(dc.title, u'')
-        self.failIf(annotations, "There shouldn't be any data yet")
+        self.assertFalse(annotations, "There shouldn't be any data yet")
         dc.title = u"Test title"
-        self.failUnless(annotations, "There should be data now!")
+        self.assertTrue(annotations, "There should be data now!")
 
         dc = ZDCAnnotatableAdapter(annotations)
         self.assertEqual(dc.title, u'Test title')

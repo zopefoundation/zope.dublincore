@@ -184,7 +184,8 @@ class Test(TestCase):
                     for qv in dc.getQualifiedDates()
                     if qv[0] == u'Modified']
 
-        self.failIf(len(modified) != 1, "should be only one: %r" % modified)
+        self.assertFalse(len(modified) != 1,
+                         "should be only one: %r" % modified)
 
         self.assertEqual(parseDatetimetz(modified[0]), dt)
 
