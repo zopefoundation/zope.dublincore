@@ -44,11 +44,11 @@ long_description = (
     '========\n' +
     'Overview\n' +
     '========\n' +
-    read('README.txt') +
+    read('README.rst') +
     read('src', 'zope', 'dublincore', 'property.txt') +
     read('src', 'zope', 'dublincore', 'tests', 'partial.txt') +
     read('src', 'zope', 'dublincore', 'tests', 'timeannotators.txt') +
-    read('CHANGES.txt')
+    read('CHANGES.rst')
     )
 
 setup(
