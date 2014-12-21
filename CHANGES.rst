@@ -5,7 +5,7 @@ Changes
 4.0.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Added support for testing on Travis-CI.
 
 
 4.0.0 (2013-02-20)
