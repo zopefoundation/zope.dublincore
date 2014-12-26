@@ -1,21 +1,22 @@
-=======
 Changes
 =======
 
 4.1.0 (Unreleased)
-==================
+------------------
+
+- Add support for PyPy.
 
 - Add support for Python 3.4.
 
 
 4.0.1 (2014-12-20)
-==================
+------------------
 
 - Add support for testing on Travis-CI.
 
 
 4.0.0 (2013-02-20)
-==================
+------------------
 
 - Add support for Python 3.3.
 
@@ -29,21 +30,21 @@ Changes
 
 
 3.8.2 (2010-02-19)
-==================
+------------------
 
 - Update <DATETIME> regex normalizer to guard against test failure when
   a datetime's microseconds value is zero.
 
 
 3.8.1 (2010-12-14)
-==================
+------------------
 
 - Add missing test dependency on zope.configuration and missing dependency
   of security.zcml on zope.security's meta.zcml.
 
 
 3.8.0 (2010-09-14)
-==================
+------------------
 
 - Register the annotators also for (object, event), so copy-pasting a
   folder, changes the dublin core data of the contained objects, too. The
@@ -55,7 +56,7 @@ Changes
 
 
 3.7.0 (2010-08-19)
-==================
+------------------
 
 - Remove backward-compatibility shims for deprecated ``zope.app.dublincore.*``
   permissions.
@@ -66,7 +67,7 @@ Changes
 
 
 3.6.3 (2010-04-23)
-==================
+------------------
 
 - Restore backward-compatible ``zope.app.dublincore.*`` permissions,
   mapping them onto the new permissions using the ``<meta:redefinePermission>``
@@ -76,14 +77,14 @@ Changes
 
 
 3.6.2 (2010-04-20)
-==================
+------------------
 
 - Repair regression introduced in 3.6.1:  the renamed permissions were
   not updated in other ZCML files.
 
 
 3.6.1 (2010-04-19)
-==================
+------------------
 
 - Rename the ``zope.app.dublincore.*`` permissions to
   ``zope.dublincore.*``.  Applications may need to fix up grants based on the
@@ -95,7 +96,7 @@ Changes
 
 
 3.6.0 (2009-12-02)
-==================
+------------------
 
 - Remove the marker interface IZopeDublinCoreAnnotatable which doesn't seem
   to be used.
@@ -106,7 +107,7 @@ Changes
 
 
 3.5.0 (2009-09-15)
-==================
+------------------
 
 - Add missing dependencies.
 
@@ -122,13 +123,13 @@ Changes
 
 
 3.4.2 (2009-01-31)
-==================
+------------------
 
 - Declare dependency on zope.datetime.
 
 
 3.4.1 (2009-01-26)
-==================
+------------------
 
 - Test dependencies are declared in a `test` extra now.
 
@@ -136,13 +137,13 @@ Changes
 
 
 3.4.0 (2007-09-28)
-==================
+------------------
 
 No further changes since 3.4.0a1.
 
 
 3.4.0a1 (2007-04-22)
-====================
+--------------------
 
 Initial release as a separate project, corresponds to zope.dublincore
 from Zope 3.4.0a1

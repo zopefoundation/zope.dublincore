@@ -39,17 +39,13 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
-long_description = (
-    '.. contents::\n\n' +
-    '========\n' +
-    'Overview\n' +
-    '========\n' +
-    read('README.rst') +
-    read('src', 'zope', 'dublincore', 'property.txt') +
-    read('src', 'zope', 'dublincore', 'tests', 'partial.txt') +
-    read('src', 'zope', 'dublincore', 'tests', 'timeannotators.txt') +
+long_description = '\n\n'.join([
+    read('README.rst'),
+    read('src', 'zope', 'dublincore', 'property.txt'),
+    read('src', 'zope', 'dublincore', 'tests', 'partial.txt'),
+    read('src', 'zope', 'dublincore', 'tests', 'timeannotators.txt'),
     read('CHANGES.rst')
-    )
+    ])
 
 setup(
     name="zope.dublincore",
@@ -74,6 +70,7 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
         ],

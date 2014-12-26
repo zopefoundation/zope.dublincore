@@ -1,4 +1,7 @@
-``zope.dublincore`` provides a Dublin Core support for Zope-based web
+``zope.dublincore``
+===================
+
+This package provides a Dublin Core support for Zope-based web
 applications.  This includes:
 
 * an ``IZopeDublinCore`` interface definition that can be implemented
