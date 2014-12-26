@@ -49,7 +49,7 @@ long_description = '\n\n'.join([
 
 setup(
     name="zope.dublincore",
-    version='4.1.0.dev0',
+    version='4.1.0',
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
