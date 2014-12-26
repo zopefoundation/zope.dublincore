@@ -2,50 +2,50 @@
 Changes
 =======
 
-4.0.2 (Unreleased)
+4.1.0 (Unreleased)
 ==================
 
-- TBD
+- Add support for Python 3.4.
 
 
 4.0.1 (2014-12-20)
 ==================
 
-- Added support for testing on Travis-CI.
+- Add support for testing on Travis-CI.
 
 
 4.0.0 (2013-02-20)
 ==================
 
-- Added support for Python 3.3.
+- Add support for Python 3.3.
 
-- Replaced deprecated ``zope.component.adapts`` usage with equivalent
+- Replace deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 
-- Replaced deprecated ``zope.interface.implements`` usage with equivalent
+- Replace deprecated ``zope.interface.implements`` usage with equivalent
   ``zope.interface.implementer`` decorator.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
 
 3.8.2 (2010-02-19)
 ==================
 
-- Updated <DATETIME> regex normalizer to guard against test failure when
+- Update <DATETIME> regex normalizer to guard against test failure when
   a datetime's microseconds value is zero.
 
 
 3.8.1 (2010-12-14)
 ==================
 
-- Added missing test dependency on zope.configuration and missing dependency
+- Add missing test dependency on zope.configuration and missing dependency
   of security.zcml on zope.security's meta.zcml.
 
 
 3.8.0 (2010-09-14)
 ==================
 
-- Registered the annotators also for (object, event), so copy-pasting a
+- Register the annotators also for (object, event), so copy-pasting a
   folder, changes the dublin core data of the contained objects, too. The
   changed annotators are the following:
 
@@ -57,50 +57,50 @@ Changes
 3.7.0 (2010-08-19)
 ==================
 
-- Removed backward-compatibility shims for deprecated ``zope.app.dublincore.*``
+- Remove backward-compatibility shims for deprecated ``zope.app.dublincore.*``
   permissions.
 
-- Removed include the zcml configuration of ``zope.dublincore.browser``.
+- Remove include the zcml configuration of ``zope.dublincore.browser``.
 
-- Using python`s doctest instead of deprecated ``zope.testing.doctest``.
+- Use python`s doctest instead of deprecated ``zope.testing.doctest``.
 
 
 3.6.3 (2010-04-23)
 ==================
 
-- Restored backward-compatible ``zope.app.dublincore.*`` permissions,
+- Restore backward-compatible ``zope.app.dublincore.*`` permissions,
   mapping them onto the new permissions using the ``<meta:redefinePermission>``
   directive.  These shims will be removed in 3.7.0.
 
-- Added unit (not functional) test for loadability of ``configure.zcml``.
+- Add unit (not functional) test for loadability of ``configure.zcml``.
 
 
 3.6.2 (2010-04-20)
 ==================
 
-- Repaired regression introduced in 3.6.1:  the renamed permissions were
+- Repair regression introduced in 3.6.1:  the renamed permissions were
   not updated in other ZCML files.
 
 
 3.6.1 (2010-04-19)
 ==================
 
-- Renamed the ``zope.app.dublincore.*`` permissions to
+- Rename the ``zope.app.dublincore.*`` permissions to
   ``zope.dublincore.*``.  Applications may need to fix up grants based on the
   old permissions.
 
-- Added tests for ``zope.dublincore.timeannotators``.
+- Add tests for ``zope.dublincore.timeannotators``.
 
-- Added not declared dependency on ``zope.lifecycleevent``.
+- Add not declared dependency on ``zope.lifecycleevent``.
 
 
 3.6.0 (2009-12-02)
 ==================
 
-- Removed the marker interface IZopeDublinCoreAnnotatable which doesn't seem
+- Remove the marker interface IZopeDublinCoreAnnotatable which doesn't seem
   to be used.
 
-- Made the registration of ZDCAnnotatableAdapter conditional, lifting the
+- Make the registration of ZDCAnnotatableAdapter conditional, lifting the
   dependency on zope.annotation and thereby the ZODB, leaving it as a test
   dependency.
 
