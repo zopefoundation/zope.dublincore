@@ -1,6 +1,9 @@
 ``zope.dublincore``
 ===================
 
+.. image:: https://travis-ci.org/zopefoundation/zope.dublincore.png?branch=master
+        :target: https://travis-ci.org/zopefoundation/zope.dublincore
+
 This package provides a Dublin Core support for Zope-based web
 applications.  This includes:
 
