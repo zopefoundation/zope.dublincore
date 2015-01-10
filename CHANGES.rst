@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.1.1 (Unreleased)
+4.1.1 (2014-01-10)
 ------------------
 
 - Add explicit dependency on ``persistent`` (required but not declared).
