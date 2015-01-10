@@ -82,14 +82,15 @@ setup(
     extras_require=dict(
         test=['zope.testing >= 3.8',
               'zope.testrunner',
-              'zope.annotation',
               'zope.configuration',
               ]
         ),
     install_requires = [
+        'persistent',
         'pytz',
         'setuptools',
         'six',
+        'zope.annotation',
         'zope.component[zcml]',
         'zope.datetime',
         'zope.interface',
@@ -101,8 +102,8 @@ setup(
     tests_require = [
         'zope.testing',
         'zope.testrunner',
-        'zope.annotation',
-        'zope.configuration'],
+        'zope.configuration',
+        ],
     test_suite = '__main__.alltests',
     zip_safe = False
     )

@@ -4,7 +4,9 @@ Changes
 4.1.1 (Unreleased)
 ------------------
 
-- TBD
+- Add explicit dependency on ``persistent`` (required but not declared).
+
+- Add explicit dependency on ``zope.annotation`` (required but not declared).
 
 
 4.1.0 (2014-12-26)
