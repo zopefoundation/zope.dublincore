@@ -44,6 +44,12 @@ long_description = '\n\n'.join([
     read('CHANGES.rst')
     ])
 
+tests_require = [
+    'zope.testing >= 3.8',
+    'zope.testrunner',
+    'zope.configuration',
+    ]
+
 setup(
     name="zope.dublincore",
     version='4.1.2.dev0',
@@ -76,12 +82,6 @@ setup(
     package_dir={'':'src'},
     namespace_packages=['zope'],
     include_package_data=True,
-    extras_require=dict(
-        test=['zope.testing >= 3.8',
-              'zope.testrunner',
-              'zope.configuration',
-              ]
-        ),
     install_requires = [
         'persistent',
         'pytz',
@@ -96,11 +96,12 @@ setup(
         'zope.schema',
         'zope.security[zcml]>=3.8',
         ],
-    tests_require = [
-        'zope.testing',
-        'zope.testrunner',
-        'zope.configuration',
-        ],
     test_suite = '__main__.alltests',
+    tests_require = tests_require,
+    extras_require = {
+        'testing': tests_require,
+        'test': tests_require,
+        'docs': ['Sphinx', 'repoze.sphinx.autointerface'],
+    },
     zip_safe = False
     )
