@@ -41,9 +41,6 @@ def alltests():
 
 long_description = '\n\n'.join([
     read('README.rst'),
-    read('src', 'zope', 'dublincore', 'property.txt'),
-    read('src', 'zope', 'dublincore', 'tests', 'partial.txt'),
-    read('src', 'zope', 'dublincore', 'tests', 'timeannotators.txt'),
     read('CHANGES.rst')
     ])
 
