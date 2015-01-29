@@ -1,0 +1,15 @@
+persistent
+pytz
+repoze.sphinx.autointerface
+six
+zope.annotation
+zope.component[zcml]
+zope.configuration
+zope.datetime
+zope.interface
+zope.lifecycleevent
+zope.location
+zope.schema
+zope.security[zcml]
+zope.testing
+zope.testrunner
