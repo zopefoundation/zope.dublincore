@@ -8,7 +8,7 @@ Contents:
 
    narrative
    api
-
+   hacking
 
 
 Indices and tables
