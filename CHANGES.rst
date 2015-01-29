@@ -4,7 +4,8 @@ Changes
 4.1.2 (Unreleased)
 ------------------
 
-- TBD
+- Convert doctests to Sphinx, including building docs and testing doctest
+  snippets under ``tox``.
 
 
 
