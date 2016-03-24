@@ -52,7 +52,7 @@ tests_require = [
 
 setup(
     name="zope.dublincore",
-    version='4.1.2.dev0',
+    version='4.2.0.dev0',
     url='http://pypi.python.org/pypi/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
@@ -67,7 +67,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',

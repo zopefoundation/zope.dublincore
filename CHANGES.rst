@@ -1,8 +1,10 @@
 Changes
 =======
 
-4.1.2 (Unreleased)
+4.2.0 (Unreleased)
 ------------------
+
+- Drop support for Python 2.6.
 
 - Convert doctests to Sphinx, including building docs and testing doctest
   snippets under ``tox``.
