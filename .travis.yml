@@ -4,12 +4,13 @@ python:
     - 2.7
     - 3.3
     - 3.4
+    - 3.5
     - pypy
     - pypy3
 install:
     - pip install .
     - pip install zope.dublincore[test]
 script:
-    - python setup.py test -q
+    - python setup.py -q test -q
 notifications:
     email: false
