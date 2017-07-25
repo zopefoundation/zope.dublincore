@@ -31,16 +31,16 @@ by simply defining a property as DCProperty.
    ...     authors = property.DCListProperty('creators')
    >>> obj = DC()
    >>> obj.title = u'My title'
-   >>> obj.title
-   u'My title'
+   >>> print(obj.title)
+   My title
 
 Let's see if the title is really stored in dublin core:
 
 .. doctest::
 
    >>> from zope.dublincore.interfaces import IZopeDublinCore
-   >>> IZopeDublinCore(obj).title
-   u'My title'
+   >>> print(IZopeDublinCore(obj).title)
+   My title
 
 Even if a dublin core property is a list property we can set and get the
 property as scalar type:
@@ -48,20 +48,20 @@ property as scalar type:
 .. doctest::
 
    >>> obj.author = u'me'
-   >>> obj.author
-   u'me'
+   >>> print(obj.author)
+   me
 
 DCListProperty acts on the list:
 
 .. doctest::
 
-   >>> obj.authors
-   (u'me',)
+   >>> obj.authors == (u'me',)
+   True
    >>> obj.authors = [u'I', u'others']
-   >>> obj.authors
-   (u'I', u'others')
-   >>> obj.author
-   u'I'
+   >>> obj.authors == (u'I', u'others')
+   True
+   >>> print(obj.author)
+   I
 
 
 Dublin Core metadata as content data
@@ -117,12 +117,12 @@ object, the value stored on the content object is used:
    >>> content = Content()
    >>> adapter = factory(content)
 
-   >>> adapter.title
-   u''
+   >>> print(adapter.title)
+   <BLANKLINE>
 
    >>> content.title = u'New Title'
-   >>> adapter.title
-   u'New Title'
+   >>> print(adapter.title)
+   New Title
 
 If we set the relevant Dublin Core field using the adapter, the
 content object is updated:
@@ -130,8 +130,8 @@ content object is updated:
 .. doctest::
 
    >>> adapter.title = u'Adapted Title'
-   >>> content.title
-   u'Adapted Title'
+   >>> print(content.title)
+   Adapted Title
 
 Dublin Core fields which are not specifically mapped to the content
 object do not affect the content object:
@@ -139,10 +139,10 @@ object do not affect the content object:
 .. doctest::
 
    >>> adapter.description = u"Some long description."
-   >>> content.description
-   u''
-   >>> adapter.description
-   u'Some long description.'
+   >>> print(content.description)
+   <BLANKLINE>
+   >>> print(adapter.description)
+   Some long description.
 
 
 Using arbitrary field names
@@ -182,16 +182,16 @@ We can check the effects of the adapter as before:
    >>> content = Content()
    >>> adapter = factory(content)
 
-   >>> adapter.description
-   u''
+   >>> print(adapter.description)
+   <BLANKLINE>
 
    >>> content.abstract = u"What it's about."
-   >>> adapter.description
-   u"What it's about."
+   >>> print(adapter.description)
+   What it's about.
 
    >>> adapter.description = u'Change of plans.'
-   >>> content.abstract
-   u'Change of plans.'
+   >>> print(content.abstract)
+   Change of plans.
 
 
 Limitations
