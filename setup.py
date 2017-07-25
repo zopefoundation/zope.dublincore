@@ -22,7 +22,8 @@ from setuptools import setup, find_packages
 import os.path
 
 def read(*path):
-    return open(os.path.join(*path)).read() + '\n\n'
+    with open(os.path.join(*path)) as f:
+        return f.read() + '\n\n'
 
 def alltests():
     import os
@@ -48,17 +49,19 @@ tests_require = [
     'zope.testing >= 3.8',
     'zope.testrunner',
     'zope.configuration',
-    ]
+    'BTrees',
+]
 
 setup(
     name="zope.dublincore",
     version='4.2.0.dev0',
-    url='http://pypi.python.org/pypi/zope.dublincore',
+    url='http://github.com/zopefoundation/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
+    keywords='metadata dublincore',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -69,20 +72,19 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
-        ],
-
+    ],
     packages=find_packages('src'),
-    package_dir={'':'src'},
+    package_dir={'': 'src'},
     namespace_packages=['zope'],
     include_package_data=True,
-    install_requires = [
+    install_requires=[
         'persistent',
         'pytz',
         'setuptools',
@@ -95,13 +97,13 @@ setup(
         'zope.location',
         'zope.schema',
         'zope.security[zcml]>=3.8',
-        ],
-    test_suite = '__main__.alltests',
-    tests_require = tests_require,
-    extras_require = {
+    ],
+    test_suite='__main__.alltests',
+    tests_require=tests_require,
+    extras_require={
         'testing': tests_require,
         'test': tests_require,
         'docs': ['Sphinx', 'repoze.sphinx.autointerface'],
     },
-    zip_safe = False
-    )
+    zip_safe=False,
+)

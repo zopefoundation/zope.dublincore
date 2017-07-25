@@ -4,13 +4,12 @@ Changes
 4.2.0 (Unreleased)
 ------------------
 
-- Add support for Python 3.5.
+- Add support for Python 3.5 and 3.6.
 
-- Drop support for Python 2.6.
+- Drop support for Python 2.6 and 3.3.
 
 - Convert doctests to Sphinx, including building docs and testing doctest
   snippets under ``tox``.
-
 
 
 4.1.1 (2014-01-10)
