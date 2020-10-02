@@ -4,7 +4,7 @@ Changes
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop support for running the tests using ``python setup.py test``.
 
 
 4.2.0 (2017-07-25)
