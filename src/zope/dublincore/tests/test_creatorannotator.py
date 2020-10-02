@@ -15,6 +15,7 @@
 """
 import unittest
 
+
 class CreatorAnnotatorTests(unittest.TestCase):
 
     def setUp(self):
@@ -64,9 +65,11 @@ class CreatorAnnotatorTests(unittest.TestCase):
 
     def _setPrincipal(self, id):
         from zope.security.management import newInteraction
+
         class DummyPrincipal(object):
             title = 'TITLE'
             description = 'DESCRIPTION'
+
             def __init__(self, id):
                 self.id = id
         if id is None:
@@ -118,6 +121,7 @@ class DummyDCAdapter(object):
 
     def _getcreator(self):
         return self.context.creators
+
     def _setcreator(self, value):
         self.context.creators = value
     creators = property(_getcreator, _setcreator, None, "Adapted Creators")

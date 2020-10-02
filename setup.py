@@ -21,9 +21,11 @@
 from setuptools import setup, find_packages
 import os.path
 
+
 def read(*path):
     with open(os.path.join(*path)) as f:
         return f.read() + '\n\n'
+
 
 def alltests():
     import os
@@ -40,10 +42,11 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+
 long_description = '\n\n'.join([
     read('README.rst'),
     read('CHANGES.rst')
-    ])
+])
 
 tests_require = [
     'zope.testing >= 3.8',

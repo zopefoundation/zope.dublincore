@@ -13,14 +13,14 @@
 ##############################################################################
 """Objects that take care of annotating dublin core meta data times
 """
-__docformat__ = 'restructuredtext'
-
 from datetime import datetime
 import pytz
 from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.proxy import removeSecurityProxy
 
 _NOW = None
+
+
 def _now():
     if _NOW is None:
         return datetime.now(pytz.utc)

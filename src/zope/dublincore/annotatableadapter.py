@@ -13,8 +13,6 @@
 ##############################################################################
 """Dublin Core Annotatable Adapter
 """
-__docformat__ = 'restructuredtext'
-
 from persistent.dict import PersistentDict
 
 from zope.annotation.interfaces import IAnnotatable
@@ -94,6 +92,7 @@ class DirectProperty(object):
         if oldvalue != value:
             setattr(context, self.__attrname, value)
 
+
 def partialAnnotatableAdapterFactory(direct_fields):
     if not direct_fields:
         raise ValueError("only use partialAnnotatableAdapterFactory()"
@@ -121,7 +120,7 @@ def partialAnnotatableAdapterFactory(direct_fields):
         if oldprop is None:
             raise ValueError("%r is not a valid DC field" % dcname)
         if (isinstance(oldprop, DateProperty)
-            or not isinstance(oldprop, ScalarProperty)):
+                or not isinstance(oldprop, ScalarProperty)):
             raise ValueError("%r is not a supported DC field" % dcname)
         prop = DirectProperty(dcname, attrname)
         setattr(ZDCPartialAnnotatableAdapter, dcname, prop)

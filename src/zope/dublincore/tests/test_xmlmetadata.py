@@ -264,6 +264,7 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
         self.assertRaises(ValueError, self.parse,
                           "<d:type s:type='t:DCMIType'>flub</d:type>")
 
+
 class XMLDublinCoreSerializationTests(unittest.TestCase):
 
     def roundtrip(self, mapping):
@@ -285,6 +286,3 @@ def test_suite():
     suite = unittest.makeSuite(XMLDublinCoreLoadingTests)
     suite.addTest(unittest.makeSuite(XMLDublinCoreSerializationTests))
     return suite
-
-if __name__ == "__main__":
-    unittest.main(defaultTest="test_suite")

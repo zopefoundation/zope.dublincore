@@ -13,8 +13,6 @@
 ##############################################################################
 """Object that takes care of annotating the dublin core creator field.
 """
-__docformat__ = 'restructuredtext'
-
 from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.management import queryInteraction
 from zope.security.proxy import removeSecurityProxy
@@ -24,6 +22,7 @@ try:
 except NameError:
     # Py3: Make unicode available.
     unicode = str
+
 
 def CreatorAnnotator(object, event=None):
     """Update Dublin-Core creator property"""
@@ -47,5 +46,5 @@ def CreatorAnnotator(object, event=None):
             if participation.principal is None:
                 continue
             principalid = participation.principal.id
-            if not principalid in dc.creators:
+            if principalid not in dc.creators:
                 dc.creators = dc.creators + (unicode(principalid), )

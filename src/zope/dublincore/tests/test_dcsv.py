@@ -13,10 +13,8 @@
 ##############################################################################
 """Test the Dublib Core Structured Value support functions.
 """
-import unittest
-
 from doctest import DocTestSuite
-from zope.dublincore.dcsv import encode, decode
+from zope.dublincore.dcsv import encode, decode  # noqa: F401
 
 
 # TODO still need tests for errors, and createMapping()
@@ -30,6 +28,7 @@ def test_decode_empty():
     []
     """
 
+
 def test_decode_simple_value():
     """
     >>> decode('v')
@@ -41,6 +40,7 @@ def test_decode_simple_value():
     >>> decode(' v ; ')
     [('', 'v')]
     """
+
 
 def test_decode_simple_escaped_value():
     # Make the docstring a raw string to avoid having escapes
@@ -68,6 +68,7 @@ def test_decode_simple_escaped_value():
     [('', ';;;')]
     """
 
+
 def test_decode_trailing_backslash():
     r"""
     >>> decode('\\')
@@ -83,6 +84,7 @@ def test_decode_trailing_backslash():
     [('', 'v')]
     """
 
+
 def test_decode_simple_list():
     """
     >>> decode('a;b;c')
@@ -90,6 +92,7 @@ def test_decode_simple_list():
     >>> decode('a;b;c;')
     [('', 'a'), ('', 'b'), ('', 'c')]
     """
+
 
 def test_decode_simple_escaped_list():
     r"""
@@ -103,6 +106,7 @@ def test_decode_simple_escaped_list():
     >>> decode(r' \=;b;c;')
     [('', '='), ('', 'b'), ('', 'c')]
     """
+
 
 def test_decode_empty_values():
     # weird case; hard to know the intent of the specification
@@ -129,6 +133,7 @@ def test_decode_empty_values():
     [('', ''), ('', ''), ('', '')]
     """
 
+
 def test_decode_labeled_values():
     """
     >>> decode('a=b')
@@ -145,6 +150,7 @@ def test_decode_labeled_values():
     >>> decode('a =b; c=  d ;')
     [('a', 'b'), ('c', 'd')]
     """
+
 
 def test_decode_mixed_values():
     """
@@ -163,17 +169,20 @@ def test_decode_mixed_values():
     [('a', 'b'), ('c', 'd'), ('', 'e'), ('f', 'g')]
     """
 
+
 def test_decode_duplicate_labels():
     """
     >>> decode('a=b;a=c; a=d')
     [('a', 'b'), ('a', 'c'), ('a', 'd')]
     """
 
+
 def test_encode_empty_list():
     """
     >>> encode([])
     ''
     """
+
 
 def test_encode_single_item():
     """
@@ -206,6 +215,7 @@ def test_encode_single_item():
     None).
     """
 
+
 def test_encode_single_value_needing_escapes():
     r"""
     >>> encode(['='])
@@ -217,6 +227,7 @@ def test_encode_single_value_needing_escapes():
     >>> encode([r'\\'])
     '\\\\\\\\;'
     """
+
 
 def test_encode_labeled_value_needing_escapes():
     r"""
@@ -250,6 +261,7 @@ def test_encode_labeled_value_needing_escapes():
     '\\;=\\;;'
     """
 
+
 def test_encode_simple_list():
     """
     >>> encode(['a', 'b', 'c'])
@@ -260,6 +272,7 @@ def test_encode_simple_list():
     'a b; c d;'
     """
 
+
 def test_encode_labeled_values():
     # Single items were tested above; these all demonstrate with more
     # than one item.
@@ -269,6 +282,7 @@ def test_encode_labeled_values():
     >>> encode([('a', 'b'), ('c', 'd')])
     'a=b; c=d;'
     """
+
 
 def test_encode_mixed_items():
     """
@@ -281,6 +295,7 @@ def test_encode_mixed_items():
     >>> encode([('b', 'c'), ('', 'a')])
     'b=c; a;'
     """
+
 
 def test_encode_error_non_strings():
     """
@@ -297,6 +312,7 @@ def test_encode_error_non_strings():
     ...
     TypeError: values must be strings; found 42
     """
+
 
 def test_encode_error_outer_whitespace():
     """
@@ -321,6 +337,3 @@ def test_encode_error_outer_whitespace():
 
 def test_suite():
     return DocTestSuite()
-
-if __name__ == '__main__':
-    unittest.main(defaultTest="test_suite")

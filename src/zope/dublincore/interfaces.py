@@ -13,23 +13,23 @@
 ##############################################################################
 """Dublin Core interfaces
 """
-__docformat__ = 'restructuredtext'
-
 from zope.interface import Interface
 from zope.schema import Text, TextLine, Datetime, Tuple
+
 
 class IDublinCoreElementItem(Interface):
     """A qualified dublin core element"""
 
     qualification = TextLine(
-        title = u"Qualification",
-        description = u"The element qualification"
-        )
+        title=u"Qualification",
+        description=u"The element qualification"
+    )
 
     value = Text(
-        title = u"Value",
-        description = u"The element value",
-        )
+        title=u"Value",
+        description=u"The element value",
+    )
+
 
 class IGeneralDublinCore(Interface):
     """Dublin-core data access interface
@@ -52,64 +52,50 @@ class IGeneralDublinCore(Interface):
     """
 
     def getQualifiedTitles():
-        """Return a sequence of Title IDublinCoreElementItem.
-        """
+        """Return a sequence of Title IDublinCoreElementItem."""
 
     def getQualifiedCreators():
-        """Return a sequence of Creator IDublinCoreElementItem.
-        """
+        """Return a sequence of Creator IDublinCoreElementItem."""
 
     def getQualifiedSubjects():
-        """Return a sequence of Subject IDublinCoreElementItem.
-        """
+        """Return a sequence of Subject IDublinCoreElementItem."""
 
     def getQualifiedDescriptions():
-        """Return a sequence of Description IDublinCoreElementItem.
-        """
+        """Return a sequence of Description IDublinCoreElementItem."""
 
     def getQualifiedPublishers():
-        """Return a sequence of Publisher IDublinCoreElementItem.
-        """
+        """Return a sequence of Publisher IDublinCoreElementItem."""
 
     def getQualifiedContributors():
-        """Return a sequence of Contributor IDublinCoreElementItem.
-        """
+        """Return a sequence of Contributor IDublinCoreElementItem."""
 
     def getQualifiedDates():
-        """Return a sequence of Date IDublinCoreElementItem.
-        """
+        """Return a sequence of Date IDublinCoreElementItem."""
 
     def getQualifiedTypes():
-        """Return a sequence of Type IDublinCoreElementItem.
-        """
+        """Return a sequence of Type IDublinCoreElementItem."""
 
     def getQualifiedFormats():
-        """Return a sequence of Format IDublinCoreElementItem.
-        """
+        """Return a sequence of Format IDublinCoreElementItem."""
 
     def getQualifiedIdentifiers():
-        """Return a sequence of Identifier IDublinCoreElementItem.
-        """
+        """Return a sequence of Identifier IDublinCoreElementItem."""
 
     def getQualifiedSources():
-        """Return a sequence of Source IDublinCoreElementItem.
-        """
+        """Return a sequence of Source IDublinCoreElementItem."""
 
     def getQualifiedLanguages():
-        """Return a sequence of Language IDublinCoreElementItem.
-        """
+        """Return a sequence of Language IDublinCoreElementItem."""
 
     def getQualifiedRelations():
-        """Return a sequence of Relation IDublinCoreElementItem.
-        """
+        """Return a sequence of Relation IDublinCoreElementItem."""
 
     def getQualifiedCoverages():
-        """Return a sequence of Coverage IDublinCoreElementItem.
-        """
+        """Return a sequence of Coverage IDublinCoreElementItem."""
 
     def getQualifiedRights():
-        """Return a sequence of Rights IDublinCoreElementItem.
-        """
+        """Return a sequence of Rights IDublinCoreElementItem."""
+
 
 class IWritableGeneralDublinCore(Interface):
     """Provide write access to dublin core data
@@ -139,7 +125,8 @@ class IWritableGeneralDublinCore(Interface):
     def setQualifiedDescriptions(qualified_descriptions):
         """Set the qualified Descriptions elements.
 
-        The argument must be a sequence of Description `IDublinCoreElementItem`.
+        The argument must be a sequence of Description
+        `IDublinCoreElementItem`.
         """
 
     def setQualifiedPublishers(qualified_publishers):
@@ -151,7 +138,8 @@ class IWritableGeneralDublinCore(Interface):
     def setQualifiedContributors(qualified_contributors):
         """Set the qualified Contributors elements.
 
-        The argument must be a sequence of Contributor `IDublinCoreElementItem`.
+        The argument must be a sequence of Contributor
+        `IDublinCoreElementItem`.
         """
 
     def setQualifiedDates(qualified_dates):
@@ -208,56 +196,52 @@ class IWritableGeneralDublinCore(Interface):
         The argument must be a sequence of Rights `IDublinCoreElementItem`.
         """
 
+
 class IDCDescriptiveProperties(Interface):
-    """Basic descriptive meta-data properties
-    """
+    """Basic descriptive meta-data properties"""
 
     title = TextLine(
-        title = u'Title',
-        description =
-        u"The first unqualified Dublin Core 'Title' element value."
-        )
+        title=u'Title',
+        description=u"The first unqualified Dublin Core 'Title' element value."
+    )
 
     description = Text(
-        title = u'Description',
-        description =
-        u"The first unqualified Dublin Core 'Description' element value.",
-        )
+        title=u'Description',
+        description=(
+            u"The first unqualified Dublin Core 'Description' element value.")
+    )
+
 
 class IDCTimes(Interface):
-    """Time properties
-    """
+    """Time properties"""
 
     created = Datetime(
-        title = u'Creation Date',
-        description =
-        u"The date and time that an object is created. "
-        u"\nThis is normally set automatically."
-        )
+        title=u'Creation Date',
+        description=u"The date and time that an object is created."
+                    u"\nThis is normally set automatically."
+    )
 
     modified = Datetime(
-        title = u'Modification Date',
-        description =
-        u"The date and time that the object was last modified in a\n"
-        u"meaningful way."
-        )
+        title=u'Modification Date',
+        description=u"The date and time that the object was last modified in a"
+                    u" meaningful way."
+    )
+
 
 class IDCPublishing(Interface):
-    """Publishing properties
-    """
+    """Publishing properties"""
 
     effective = Datetime(
-        title = u'Effective Date',
-        description =
-        u"The date and time that an object should be published. "
-        )
-
+        title=u'Effective Date',
+        description=u"The date and time that an object should be published. "
+    )
 
     expires = Datetime(
-        title = u'Expiration Date',
-        description =
-        u"The date and time that the object should become unpublished."
-        )
+        title=u'Expiration Date',
+        description=u"The date and time that the object should become"
+                    u" unpublished."
+    )
+
 
 class IDCExtended(Interface):
     """Extended properties
@@ -266,35 +250,34 @@ class IDCExtended(Interface):
     quite figured out yet.
     """
 
-
     creators = Tuple(
-        title = u'Creators',
-        description = u"The unqualified Dublin Core 'Creator' element values",
-        value_type = TextLine(),
-        )
+        title=u'Creators',
+        description=u"The unqualified Dublin Core 'Creator' element values",
+        value_type=TextLine(),
+    )
 
     subjects = Tuple(
-        title = u'Subjects',
-        description = u"The unqualified Dublin Core 'Subject' element values",
-        value_type = TextLine(),
-        )
+        title=u'Subjects',
+        description=u"The unqualified Dublin Core 'Subject' element values",
+        value_type=TextLine(),
+    )
 
     publisher = Text(
-        title = u'Publisher',
-        description =
-        u"The first unqualified Dublin Core 'Publisher' element value.",
-        )
+        title=u'Publisher',
+        description=u"The first unqualified Dublin Core 'Publisher' element"
+                    u" value.",
+    )
 
     contributors = Tuple(
-        title = u'Contributors',
-        description =
-        u"The unqualified Dublin Core 'Contributor' element values",
-        value_type = TextLine(),
-        )
+        title=u'Contributors',
+        description=u"The unqualified Dublin Core 'Contributor' element"
+                    u" values",
+        value_type=TextLine(),
+    )
+
 
 class ICMFDublinCore(Interface):
-    """This interface duplicates the CMF dublin core interface.
-    """
+    """This interface duplicates the CMF dublin core interface."""
 
     def Title():
         """Return the resource title.
@@ -446,6 +429,7 @@ class ICMFDublinCore(Interface):
         defined, otherwise, an empty unicode string is returned.
         """
 
+
 class IZopeDublinCore(
     IGeneralDublinCore,
     ICMFDublinCore,
@@ -453,11 +437,12 @@ class IZopeDublinCore(
     IDCTimes,
     IDCPublishing,
     IDCExtended,
-    ):
+):
     """Zope Dublin Core properties"""
+
 
 class IWriteZopeDublinCore(
     IZopeDublinCore,
     IWritableGeneralDublinCore,
-    ):
+):
     """Zope Dublin Core properties with generate update support"""

@@ -17,6 +17,7 @@ import unittest
 
 _marker = object()
 
+
 class ZDCAnnotatableAdapterTests(unittest.TestCase):
 
     _registered = False
@@ -38,9 +39,11 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         from zope.interface import Interface
         from zope.annotation.interfaces import IAnnotations
         from zope.dublincore.annotatableadapter import DCkey
+
         class _Annotations(dict):
             pass
         instance = _Annotations({DCkey: dcdata})
+
         def _factory(context):
             return instance
         if not self._registered:
@@ -101,7 +104,8 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         context = self._makeContext()
         adapter = self._makeOne(context)
         adapter._changed()
-        self.assertEqual(annotations[DCkey]['title'], 'TITLE') #unchanged
+        self.assertEqual(annotations[DCkey]['title'], 'TITLE')  # unchanged
+
 
 class DirectPropertyTests(unittest.TestCase):
 
@@ -114,16 +118,20 @@ class DirectPropertyTests(unittest.TestCase):
 
     def test___get___via_klass(self):
         prop = self._makeOne('title', 'headline')
+
         class Testing(object):
             title = prop
         self.assertTrue(Testing.title is prop)
 
     def test___get___via_instance(self):
         prop = self._makeOne('title', 'headline')
+
         class Context(object):
             headline = u'HEADLINE'
+
         class ZDCPartialAnnotatableAdapter(object):
             title = prop
+
             def __init__(self, context):
                 self.__context = context
         context = Context()
@@ -132,10 +140,13 @@ class DirectPropertyTests(unittest.TestCase):
 
     def test___set___non_unicode_raises(self):
         prop = self._makeOne('title', 'headline')
+
         class Context(object):
             headline = u'HEADLINE'
+
         class ZDCPartialAnnotatableAdapter(object):
             title = prop
+
             def __init__(self, context):
                 self.__context = context
         context = Context()
@@ -149,30 +160,38 @@ class DirectPropertyTests(unittest.TestCase):
 
     def test___set___unchanged_doesnt_mutate(self):
         prop = self._makeOne('title', 'headline')
+
         class Context(object):
             headline = u'HEADLINE'
+
             def __setattr__(self, name, value):
                 assert 0
+
         class ZDCPartialAnnotatableAdapter(object):
             title = prop
+
             def __init__(self, context):
                 self.__context = context
         context = Context()
         testing = ZDCPartialAnnotatableAdapter(context)
-        testing.title = u'HEADLINE' # doesn't raise
+        testing.title = u'HEADLINE'  # doesn't raise
 
     def test___set___changed_mutates(self):
         prop = self._makeOne('title', 'headline')
+
         class Context(object):
             headline = u'HEADLINE1'
+
         class ZDCPartialAnnotatableAdapter(object):
             title = prop
+
             def __init__(self, context):
                 self.__context = context
         context = Context()
         testing = ZDCPartialAnnotatableAdapter(context)
         testing.title = u'HEADLINE2'
         self.assertEqual(context.headline, u'HEADLINE2')
+
 
 class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
 
@@ -207,7 +226,7 @@ class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
         prop = klass.title
         self.assertTrue(isinstance(prop, DirectProperty))
         self.assertEqual(prop.__name__, 'title')
-        self.assertEqual(prop._DirectProperty__attrname, 'title') # XXX
+        self.assertEqual(prop._DirectProperty__attrname, 'title')  # XXX
 
     def test_w_scalar_prop_mapped(self):
         from zope.dublincore.annotatableadapter import DirectProperty
@@ -215,13 +234,12 @@ class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
         prop = klass.title
         self.assertTrue(isinstance(prop, DirectProperty))
         self.assertEqual(prop.__name__, 'title')
-        self.assertEqual(prop._DirectProperty__attrname, 'headline') # XXX
+        self.assertEqual(prop._DirectProperty__attrname, 'headline')  # XXX
 
 
 def test_suite():
     return unittest.TestSuite((
-            unittest.makeSuite(ZDCAnnotatableAdapterTests),
-            unittest.makeSuite(DirectPropertyTests),
-            unittest.makeSuite(Test_partialAnnotatableAdapterFactory),
-        ))
-
+        unittest.makeSuite(ZDCAnnotatableAdapterTests),
+        unittest.makeSuite(DirectPropertyTests),
+        unittest.makeSuite(Test_partialAnnotatableAdapterFactory),
+    ))

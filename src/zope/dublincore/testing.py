@@ -13,7 +13,6 @@
 ##############################################################################
 """Testing support
 """
-__docformat__ = 'restructuredtext'
 import re
 from zope import component
 from zope.testing import renormalizing
@@ -21,16 +20,16 @@ from zope.testing import renormalizing
 from .annotatableadapter import ZDCAnnotatableAdapter
 from .interfaces import IWriteZopeDublinCore
 
+
 checker = renormalizing.RENormalizing([
     # Python 3 unicode removed the "u".
     (re.compile("u('.*?')"),
      r"\1"),
     (re.compile('u(".*?")'),
      r"\1"),
-    ])
+])
 
 
 def setUpDublinCore():
-    component.provideAdapter(ZDCAnnotatableAdapter,
-                             provides=IWriteZopeDublinCore,
-                            )
+    component.provideAdapter(
+        ZDCAnnotatableAdapter, provides=IWriteZopeDublinCore)

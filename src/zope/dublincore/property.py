@@ -13,18 +13,16 @@
 ##############################################################################
 """Base DublinCore property adapter.
 """
-__docformat__ = 'restructuredtext'
 from zope import schema
 
 from zope.dublincore.interfaces import IZopeDublinCore
-from zope.dublincore.zopedublincore import SequenceProperty
 
 _marker = object()
 
 
 class DCProperty(object):
     """Adapt to a dublin core property
-    
+
     Handles DC list properties as scalar property.
     """
 
@@ -71,7 +69,7 @@ class DCProperty(object):
 
 class DCListProperty(DCProperty):
     """Adapt to a dublin core list property
-    
+
     Returns the DC property unchanged.
     """
 
@@ -101,4 +99,3 @@ class DCListProperty(DCProperty):
         if field.readonly and name in inst.__dict__:
             raise ValueError(name, 'field is readonly')
         setattr(inst, name, value)
-

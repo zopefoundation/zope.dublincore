@@ -13,8 +13,6 @@
 ##############################################################################
 """Dublin Core XML data parser and writer
 """
-__docformat__ = 'restructuredtext'
-
 import xml.sax
 import xml.sax.handler
 
@@ -35,10 +33,11 @@ dublin_core_namespaces = dcterms.DC_NS, dcterms.DCTERMS_NS
 
 DEFAULT_NAMESPACE_PREFIXES = {
     # uri:              prefix,
-    dcterms.DC_NS:      "dc",
+    dcterms.DC_NS: "dc",
     dcterms.DCTERMS_NS: "dcterms",
-    dcterms.XSI_NS:     "xsi",
-    }
+    dcterms.XSI_NS: "xsi",
+}
+
 
 class NamespaceTracker(object):
     def __init__(self, mapping=None):
@@ -106,13 +105,14 @@ def dumpString(mapping):
     sio.write("</metadata>\n")
     return sio.getvalue()
 
+
 try:
     unicode
 except NameError:
     _encode_string = escape
 else:
     def _encode_string(s):
-        if isinstance(s, unicode):
+        if isinstance(s, unicode):  # noqa: F821
             s = s.encode('utf-8')
         return escape(s)
 
@@ -122,11 +122,13 @@ def parse(source, error_handler=None):
     parser.parse(source)
     return ch.mapping
 
+
 def parseString(text, error_handler=None):
     parser, ch = _setup_parser(error_handler)
     parser.feed(text)
     parser.close()
     return ch.mapping
+
 
 def _setup_parser(error_handler):
     parser = xml.sax.make_parser()
