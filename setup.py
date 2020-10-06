@@ -41,7 +41,7 @@ tests_require = [
 
 setup(
     name="zope.dublincore",
-    version='4.2.1.dev0',
+    version='4.3.0.dev0',
     url='http://github.com/zopefoundation/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
