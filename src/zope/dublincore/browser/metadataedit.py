@@ -22,6 +22,11 @@ from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('zope')
 
+try:
+    unicode
+except NameError:  # PY3
+    unicode = str
+
 
 class MetaDataEdit(object):
     """Provide view for editing basic dublin-core meta-data."""
