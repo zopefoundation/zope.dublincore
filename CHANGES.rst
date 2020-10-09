@@ -1,10 +1,12 @@
 Changes
 =======
 
-4.2.1 (unreleased)
+4.3.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop support for running the tests using ``python setup.py test``.
+
+- Drop support for Python 3.4 and 3.5.
 
 
 4.2.0 (2017-07-25)
