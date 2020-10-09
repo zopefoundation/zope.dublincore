@@ -21,29 +21,16 @@
 from setuptools import setup, find_packages
 import os.path
 
+
 def read(*path):
     with open(os.path.join(*path)) as f:
         return f.read() + '\n\n'
 
-def alltests():
-    import os
-    import sys
-    import unittest
-    # use the zope.testrunner machinery to find all the
-    # test suites we've put under ourselves
-    import zope.testrunner.find
-    import zope.testrunner.options
-    here = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
-    args = sys.argv[:]
-    defaults = ["--test-path", here]
-    options = zope.testrunner.options.get_options(args, defaults)
-    suites = list(zope.testrunner.find.find_suites(options))
-    return unittest.TestSuite(suites)
 
 long_description = '\n\n'.join([
     read('README.rst'),
     read('CHANGES.rst')
-    ])
+])
 
 tests_require = [
     'zope.testing >= 3.8',
@@ -54,7 +41,7 @@ tests_require = [
 
 setup(
     name="zope.dublincore",
-    version='4.2.1.dev0',
+    version='4.3.0.dev0',
     url='http://github.com/zopefoundation/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
@@ -96,8 +83,6 @@ setup(
         'zope.schema',
         'zope.security[zcml]>=3.8',
     ],
-    test_suite='__main__.alltests',
-    tests_require=tests_require,
     extras_require={
         'testing': tests_require,
         'test': tests_require,
