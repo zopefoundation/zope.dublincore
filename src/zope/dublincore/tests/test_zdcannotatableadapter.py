@@ -19,9 +19,11 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component.testing import PlacelessSetup
 from zope.interface import implementer
 
+
 @implementer(IAnnotations)
 class TestAnnotations(dict):
     pass
+
 
 class DublinCoreAdapterTest(PlacelessSetup, unittest.TestCase):
 
@@ -39,8 +41,6 @@ class DublinCoreAdapterTest(PlacelessSetup, unittest.TestCase):
         dc = ZDCAnnotatableAdapter(annotations)
         self.assertEqual(dc.title, u'Test title')
 
+
 def test_suite():
     return unittest.makeSuite(DublinCoreAdapterTest)
-
-if __name__=='__main__':
-    unittest.main(defaultTest='test_suite')

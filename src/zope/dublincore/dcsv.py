@@ -18,22 +18,14 @@ labelled values in a text string', at:
 
 http://dublincore.org/documents/dcmi-dcsv/
 """
-__docformat__ = 'restructuredtext'
-
 import re
 
 __all__ = "encode", "decode"
 
 try:
-    basestring
+    unicode
 except NameError:
-    # define basestring in Python 2.2.x:
-    try:
-        unicode
-    except NameError:
-        basestring = str
-    else:
-        basestring = str, unicode
+    basestring = str  # PY3
 
 
 def encode(items):
@@ -56,6 +48,7 @@ def encode(items):
             L.append(s)
     return " ".join(L)
 
+
 def _encode_string(s, what):
     if s.strip() != s:
         raise ValueError("%s may not include leading or trailing spaces: %r"
@@ -75,7 +68,7 @@ def decode(text):
                 items.append(('', prefix))
                 text = text[m.end():].lstrip()
                 continue
-            else: # char == "="
+            else:  # char == "="
                 text = text[m.end():].lstrip()
             # else we have a label
             m = _find_value(text)
@@ -91,9 +84,11 @@ def decode(text):
             break
     return items
 
+
 _prefix = r"((?:[^;\\=]|\\.)*)"
 _find_interesting = re.compile(_prefix + "([;=])").match
 _find_value = re.compile(_prefix + ";").match
+
 
 def _decode_string(s):
     if "\\" not in s:

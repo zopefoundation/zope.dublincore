@@ -14,7 +14,8 @@
 """Test Zope's Dublin Core implementation
 """
 
-from unittest import TestCase, TestSuite, main, makeSuite
+from unittest import TestCase
+
 
 class Test(TestCase):
 
@@ -40,32 +41,30 @@ class Test(TestCase):
         self.assertEqual(ovalues, ivalues)
 
     def __testQualified(self, name,
-                        values = [
-                           (u'', u'blah blah'),
-                           (u'old', u'bleep bleep'),
-                           (u'old', u'bleep bleep \u1111'),
-                           (u'foo\u1111', u'bleep bleep'),
-                           ]
-                        ):
-        getattr(self.dc, 'setQualified'+name)(values)
+                        values=[
+                            (u'', u'blah blah'),
+                            (u'old', u'bleep bleep'),
+                            (u'old', u'bleep bleep \u1111'),
+                            (u'foo\u1111', u'bleep bleep'),
+                        ]):
+        getattr(self.dc, 'setQualified' + name)(values)
         self.__testGetQualified(name, values)
 
     def testOtherQualified(self):
         for name in ('Sources', 'Relations', 'Coverages'):
             self.__testQualified(name)
 
-
     def testScalars(self):
         for qname, mname, pname in (
-            ('Titles', 'Title', 'title'),
-            ('Descriptions', 'Description', 'description'),
-            ('Publishers', 'Publisher', 'publisher'),
-            ('Types', 'Type', 'type'),
-            ('Formats', 'Format', 'format'),
-            ('Identifiers', 'Identifier', 'identifier'),
-            ('Languages', 'Language', 'language'),
-            ('Rights', 'Rights', 'rights'),
-            ):
+                ('Titles', 'Title', 'title'),
+                ('Descriptions', 'Description', 'description'),
+                ('Publishers', 'Publisher', 'publisher'),
+                ('Types', 'Type', 'type'),
+                ('Formats', 'Format', 'format'),
+                ('Identifiers', 'Identifier', 'identifier'),
+                ('Languages', 'Language', 'language'),
+                ('Rights', 'Rights', 'rights'),
+        ):
             self.__testQualified(qname)
             dc = self.dc
             self.assertEqual(getattr(dc, pname), u'blah blah')
@@ -76,12 +75,11 @@ class Test(TestCase):
             self.assertEqual(getattr(dc, pname), u'foo')
             self.assertEqual(getattr(dc, mname)(), u'foo')
             self.__testGetQualified(qname,
-                                    [
-                                       (u'', u'foo'),
-                                       (u'old', u'bleep bleep'),
-                                       (u'old', u'bleep bleep \u1111'),
-                                       (u'foo\u1111', u'bleep bleep'),
-                                       ]
+                                    [(u'', u'foo'),
+                                     (u'old', u'bleep bleep'),
+                                     (u'old', u'bleep bleep \u1111'),
+                                     (u'foo\u1111', u'bleep bleep'),
+                                     ]
                                     )
 
     def testSequences(self):
@@ -89,16 +87,15 @@ class Test(TestCase):
             ('Creators', 'Creator', 'creators'),
             ('Subjects', 'Subject', 'subjects'),
             ('Contributors', 'Contributors', 'contributors'),
-            ):
-            self.__testQualified(qname, [
-                                           (u'', u'foo'),
-                                           (u'', u'bar'),
-                                           (u'', u'baz'),
-                                           (u'', u'baz\u1111'),
-                                           (u'old', u'bleep bleep'),
-                                           (u'old', u'bleep bleep \u1111'),
-                                           (u'foo\u1111', u'bleep bleep'),
-                                       ]
+        ):
+            self.__testQualified(qname, [(u'', u'foo'),
+                                         (u'', u'bar'),
+                                         (u'', u'baz'),
+                                         (u'', u'baz\u1111'),
+                                         (u'old', u'bleep bleep'),
+                                         (u'old', u'bleep bleep \u1111'),
+                                         (u'foo\u1111', u'bleep bleep'),
+                                         ]
                                  )
             dc = self.dc
 
@@ -111,7 +108,6 @@ class Test(TestCase):
             v = list(v)
             v.sort()
             self.assertEqual(v, [u'bar', u'baz', u'baz\u1111', u'foo'])
-
 
             self.assertRaises(Exception, setattr, dc, pname, b'foo')
             self.assertRaises(Exception, setattr, dc, pname, [b'foo'])
@@ -129,19 +125,16 @@ class Test(TestCase):
             self.assertEqual(v, [u'eggs', u'ham', u'high', u'low', u'spam'])
 
             self.__testGetQualified(qname,
-                                    [
-                                       (u'', u'high'),
-                                       (u'', u'low'),
-                                       (u'', u'spam'),
-                                       (u'', u'eggs'),
-                                       (u'', u'ham'),
-                                       (u'old', u'bleep bleep'),
-                                       (u'old', u'bleep bleep \u1111'),
-                                       (u'foo\u1111', u'bleep bleep'),
-                                       ]
+                                    [(u'', u'high'),
+                                     (u'', u'low'),
+                                     (u'', u'spam'),
+                                     (u'', u'eggs'),
+                                     (u'', u'ham'),
+                                     (u'old', u'bleep bleep'),
+                                     (u'old', u'bleep bleep \u1111'),
+                                     (u'foo\u1111', u'bleep bleep'),
+                                     ]
                                     )
-
-
 
     def testDates(self):
         self.__testQualified('Dates', [
@@ -153,7 +146,7 @@ class Test(TestCase):
             (u'xxx', u'2000-07-04'),
             (u'xxx', u'2001-12-31'),
             (u'foo \u1111', u'2001-12-31'),
-            ])
+        ])
 
         from zope.datetime import parseDatetimetz
 
@@ -173,7 +166,6 @@ class Test(TestCase):
         self.assertEqual(dc.EffectiveDate(), u'2002-10-09T00:00:00-04:00')
         self.assertEqual(dc.ExpirationDate(), u'2002-10-16T00:00:00-04:00')
 
-
         dt = parseDatetimetz('2002-10-03T14:51:55-04:00')
 
         dc.modified = dt
@@ -191,12 +183,3 @@ class Test(TestCase):
 
         modified = dc.ModificationDate()
         self.assertEqual(parseDatetimetz(modified), dt)
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(Test),
-        ))
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')

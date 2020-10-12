@@ -14,11 +14,13 @@
 """ Tests that ZCML can be loaded.
 """
 import unittest
+import zope.component.testing
+
 
 class ZCMLTests(unittest.TestCase):
 
-    from zope.component.testing import setUp
-    from zope.component.testing import tearDown
+    setUp = zope.component.testing.setUp
+    tearDown = zope.component.testing.tearDown
 
     def test_loadable(self):
         # N.B.:  this test deliberately avoids any "ftesting" / layers

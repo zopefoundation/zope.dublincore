@@ -13,17 +13,14 @@
 ##############################################################################
 """Dublin Core Meta Data View
 """
-__docformat__ = 'restructuredtext'
-
 from datetime import datetime
 from zope.event import notify
 from zope.dublincore.interfaces import IZopeDublinCore
 from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 from zope.i18nmessageid import MessageFactory
+
 _ = MessageFactory('zope')
-
-
-text_type = type(u'')  #PY3
+text_type = type(u'')  # PY3
 
 
 class MetaDataEdit(object):
@@ -31,24 +28,26 @@ class MetaDataEdit(object):
 
     def edit(self):
         request = self.request
-        formatter = self.request.locale.dates.getFormatter('dateTime', 'medium')
+        formatter = self.request.locale.dates.getFormatter(
+            'dateTime', 'medium')
         dc = IZopeDublinCore(self.context)
-        message=''
+        message = ''
 
         if 'dctitle' in request:
             dc.title = text_type(request['dctitle'])
             dc.description = text_type(request['dcdescription'])
             description = Attributes(IZopeDublinCore, 'title', 'description')
             notify(ObjectModifiedEvent(self.context, description))
-            message = _("Changed data ${datetime}",
-                        mapping={'datetime': formatter.format(datetime.utcnow())})
+            message = _(
+                "Changed data ${datetime}",
+                mapping={'datetime': formatter.format(datetime.utcnow())})
 
         return {
             'message': message,
             'dctitle': dc.title,
             'dcdescription': dc.description,
-            'modified': (dc.modified or dc.created) and \
-                        formatter.format(dc.modified or dc.created) or '',
+            'modified': ((dc.modified or dc.created) and
+                         formatter.format(dc.modified or dc.created) or ''),
             'created': dc.created and formatter.format(dc.created) or '',
             'creators': dc.creators
-            }
+        }
