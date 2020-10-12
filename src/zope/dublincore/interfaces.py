@@ -233,7 +233,7 @@ class IDCPublishing(Interface):
 
     effective = Datetime(
         title=u'Effective Date',
-        description=u"The date and time that an object should be published. "
+        description=u"The date and time that an object should be published."
     )
 
     expires = Datetime(

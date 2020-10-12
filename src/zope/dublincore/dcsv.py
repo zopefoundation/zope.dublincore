@@ -26,8 +26,6 @@ try:
     unicode
 except NameError:
     basestring = str  # PY3
-else:
-    basestring = str, unicode   # noqa: F821
 
 
 def encode(items):

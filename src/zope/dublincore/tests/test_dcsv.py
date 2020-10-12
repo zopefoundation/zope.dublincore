@@ -11,10 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Test the Dublib Core Structured Value support functions.
+"""Test the Dublin Core Structured Value support functions.
 """
 from doctest import DocTestSuite
-from zope.dublincore.dcsv import encode, decode  # noqa: F401
+# Imports needed inside the doctests:
+from zope.dublincore.dcsv import encode, decode
 
 
 # TODO still need tests for errors, and createMapping()

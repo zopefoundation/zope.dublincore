@@ -20,14 +20,7 @@ from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 from zope.i18nmessageid import MessageFactory
 
 _ = MessageFactory('zope')
-
-try:
-    unicode
-except NameError:
-    unicode = str  # PY3
-
-
-text_type = type(u'')  #PY3
+text_type = type(u'')  # PY3
 
 
 class MetaDataEdit(object):
