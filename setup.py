@@ -32,12 +32,18 @@ long_description = '\n\n'.join([
     read('CHANGES.rst')
 ])
 
-tests_require = [
+testing_require = [
     'zope.testing >= 3.8',
     'zope.testrunner',
     'zope.configuration',
     'BTrees',
 ]
+
+tests_require = testing_require + [
+    # 'zope.annotation',
+    'zope.publisher',
+]
+
 
 setup(
     name="zope.dublincore",
@@ -84,7 +90,7 @@ setup(
         'zope.security[zcml]>=3.8',
     ],
     extras_require={
-        'testing': tests_require,
+        'testing': testing_require,
         'test': tests_require,
         'docs': ['Sphinx', 'repoze.sphinx.autointerface'],
     },

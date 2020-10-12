@@ -4,6 +4,8 @@ Changes
 4.3.0 (unreleased)
 ------------------
 
+- Port ``.browser`` sub-package to Python 3.
+
 - Drop support for running the tests using ``python setup.py test``.
 
 - Drop support for Python 3.4 and 3.5.
