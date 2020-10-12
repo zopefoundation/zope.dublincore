@@ -22,10 +22,8 @@ from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('zope')
 
-try:
-    unicode
-except NameError:  # PY3
-    unicode = str
+
+text_type = type(u'')  #PY3
 
 
 class MetaDataEdit(object):
@@ -38,8 +36,8 @@ class MetaDataEdit(object):
         message=''
 
         if 'dctitle' in request:
-            dc.title = unicode(request['dctitle'])
-            dc.description = unicode(request['dcdescription'])
+            dc.title = text_type(request['dctitle'])
+            dc.description = text_type(request['dcdescription'])
             description = Attributes(IZopeDublinCore, 'title', 'description')
             notify(ObjectModifiedEvent(self.context, description))
             message = _("Changed data ${datetime}",
