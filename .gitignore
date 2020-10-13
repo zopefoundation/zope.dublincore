@@ -1,7 +1,12 @@
-.tox
 *.egg-info/
 *.pyc
-docs/_build/
 .coverage
+.tox/
+bin/
 coverage.xml
+docs/_build/
+lib/
 nosetests.xml
+.installed.cfg
+pyvenv.cfg
+develop-eggs/
