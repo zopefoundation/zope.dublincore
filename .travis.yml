@@ -12,7 +12,7 @@ matrix:
   include:
     - name: "lint"
       python: 3.6
-      before_install:
+      install:
         - pip install -U tox
       script:
         - tox -e lint
