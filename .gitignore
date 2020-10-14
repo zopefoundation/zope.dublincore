@@ -1,12 +1,13 @@
 *.egg-info/
 *.pyc
 .coverage
+.installed.cfg
 .tox/
 bin/
 coverage.xml
+develop-eggs/
 docs/_build/
+htmlcov/
 lib/
 nosetests.xml
-.installed.cfg
 pyvenv.cfg
-develop-eggs/
