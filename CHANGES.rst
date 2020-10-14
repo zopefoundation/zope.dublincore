@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.3.0 (unreleased)
+4.3.0 (2020-10-14)
 ------------------
 
 - Port ``.browser`` sub-package to Python 3.
