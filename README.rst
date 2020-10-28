@@ -9,8 +9,8 @@
    :target: https://pypi.org/project/zope.dublincore/
    :alt: Supported Python versions
 
-.. image:: https://travis-ci.org/zopefoundation/zope.dublincore.svg?branch=master
-   :target: https://travis-ci.org/zopefoundation/zope.dublincore
+.. image:: https://travis-ci.com/zopefoundation/zope.dublincore.svg?branch=master
+   :target: https://travis-ci.com/zopefoundation/zope.dublincore
 
 .. image:: https://readthedocs.org/projects/zopedublincore/badge/?version=latest
    :target: http://zopedublincore.readthedocs.org/en/latest/
