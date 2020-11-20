@@ -4,7 +4,7 @@ Changes
 4.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add back support for Python 3.5.
 
 
 4.3.0 (2020-10-14)
