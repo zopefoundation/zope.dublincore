@@ -96,7 +96,11 @@ setup(
     extras_require={
         'testing': testing_require,
         'test': tests_require,
-        'docs': ['Sphinx', 'repoze.sphinx.autointerface'],
+        'docs': [
+            'Sphinx',
+            'repoze.sphinx.autointerface',
+            'zope.testing',
+        ],
     },
     zip_safe=False,
 )
