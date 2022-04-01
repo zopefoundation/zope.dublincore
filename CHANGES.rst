@@ -6,6 +6,8 @@ Changes
 
 - Add back support for Python 3.5.
 
+- Add support for Python 3.10.
+
 
 4.3.0 (2020-10-14)
 ------------------
