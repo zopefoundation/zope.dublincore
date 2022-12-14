@@ -1,12 +1,12 @@
 Changes
 =======
 
-4.3.1 (unreleased)
-------------------
+4.4 (unreleased)
+----------------
 
 - Add back support for Python 3.5.
 
-- Add support for Python 3.10.
+- Add support for Python 3.10, 3.11.
 
 
 4.3.0 (2020-10-14)

@@ -16,7 +16,8 @@
 import unittest
 
 from zope.dublincore import dcterms
-from zope.dublincore.xmlmetadata import dumpString, parseString
+from zope.dublincore.xmlmetadata import dumpString
+from zope.dublincore.xmlmetadata import parseString
 
 
 class XMLDublinCoreLoadingTests(unittest.TestCase):

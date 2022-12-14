@@ -25,8 +25,8 @@ class CreatorAnnotatorTests(unittest.TestCase):
         self._registerAdapter()
 
     def tearDown(self):
-        from zope.testing.cleanup import cleanUp
         from zope.security.management import endInteraction
+        from zope.testing.cleanup import cleanUp
         endInteraction()
         cleanUp()
 
@@ -44,6 +44,7 @@ class CreatorAnnotatorTests(unittest.TestCase):
 
     def _registerAdapter(self):
         from zope.component import provideAdapter
+
         from zope.dublincore.interfaces import IZopeDublinCore
         provideAdapter(DummyDCAdapter, (self._iface, ), IZopeDublinCore)
 

@@ -14,9 +14,12 @@
 """Objects that take care of annotating dublin core meta data times
 """
 from datetime import datetime
+
 import pytz
-from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.proxy import removeSecurityProxy
+
+from zope.dublincore.interfaces import IZopeDublinCore
+
 
 _NOW = None
 

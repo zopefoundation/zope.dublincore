@@ -20,6 +20,7 @@ http://dublincore.org/documents/dcmi-dcsv/
 """
 import re
 
+
 __all__ = "encode", "decode"
 
 try:

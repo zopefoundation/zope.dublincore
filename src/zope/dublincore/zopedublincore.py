@@ -15,10 +15,13 @@
 """
 from datetime import datetime
 
-from zope.interface import implementer
-from zope.datetime import parseDatetimetz
-from zope.dublincore.interfaces import IZopeDublinCore
 import six
+
+from zope.datetime import parseDatetimetz
+from zope.interface import implementer
+
+from zope.dublincore.interfaces import IZopeDublinCore
+
 
 try:
     unicode

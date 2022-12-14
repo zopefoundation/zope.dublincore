@@ -14,7 +14,10 @@
 """Dublin Core interfaces
 """
 from zope.interface import Interface
-from zope.schema import Text, TextLine, Datetime, Tuple
+from zope.schema import Datetime
+from zope.schema import Text
+from zope.schema import TextLine
+from zope.schema import Tuple
 
 
 class IDublinCoreElementItem(Interface):

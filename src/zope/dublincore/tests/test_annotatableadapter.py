@@ -15,6 +15,7 @@
 """
 import unittest
 
+
 _marker = object()
 
 
@@ -35,9 +36,10 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         return ZDCAnnotatableAdapter
 
     def _registerAnnotations(self, dcdata=None):
+        from zope.annotation.interfaces import IAnnotations
         from zope.component import provideAdapter
         from zope.interface import Interface
-        from zope.annotation.interfaces import IAnnotations
+
         from zope.dublincore.annotatableadapter import DCkey
 
         class _Annotations(dict):
@@ -63,11 +65,13 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
 
     def test_class_conforms_to_IWriteZopeDublinCore(self):
         from zope.interface.verify import verifyClass
+
         from zope.dublincore.interfaces import IWriteZopeDublinCore
         verifyClass(IWriteZopeDublinCore, self._getTargetClass())
 
     def test_instance_conforms_to_IWriteZopeDublinCore(self):
         from zope.interface.verify import verifyObject
+
         from zope.dublincore.interfaces import IWriteZopeDublinCore
         self._registerAnnotations()
         verifyObject(IWriteZopeDublinCore, self._makeOne())
@@ -196,8 +200,8 @@ class DirectPropertyTests(unittest.TestCase):
 class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
 
     def _callFUT(self, direct_fields):
-        from zope.dublincore.annotatableadapter \
-            import partialAnnotatableAdapterFactory
+        from zope.dublincore.annotatableadapter import \
+            partialAnnotatableAdapterFactory
         return partialAnnotatableAdapterFactory(direct_fields)
 
     def test_w_empty_list_raises(self):

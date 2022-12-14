@@ -13,18 +13,20 @@
 ##############################################################################
 """Dublin Core Annotatable Adapter
 """
-from persistent.dict import PersistentDict
+import six
 
+from persistent.dict import PersistentDict
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import implementer
 from zope.location import Location
+
 from zope.dublincore.interfaces import IWriteZopeDublinCore
 from zope.dublincore.zopedublincore import DateProperty
 from zope.dublincore.zopedublincore import ScalarProperty
 from zope.dublincore.zopedublincore import ZopeDublinCore
-import six
+
 
 DCkey = "zope.app.dublincore.ZopeDublinCore"
 
