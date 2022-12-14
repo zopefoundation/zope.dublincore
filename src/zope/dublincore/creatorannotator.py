@@ -13,9 +13,11 @@
 ##############################################################################
 """Object that takes care of annotating the dublin core creator field.
 """
-from zope.dublincore.interfaces import IZopeDublinCore
 from zope.security.management import queryInteraction
 from zope.security.proxy import removeSecurityProxy
+
+from zope.dublincore.interfaces import IZopeDublinCore
+
 
 try:
     unicode

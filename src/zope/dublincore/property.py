@@ -14,8 +14,8 @@
 """Base DublinCore property adapter.
 """
 from zope import schema
-
 from zope.dublincore.interfaces import IZopeDublinCore
+
 
 _marker = object()
 

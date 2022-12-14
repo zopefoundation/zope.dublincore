@@ -15,10 +15,11 @@
 """
 import xml.sax
 import xml.sax.handler
-
-from xml.sax.saxutils import escape, quoteattr
+from xml.sax.saxutils import escape
+from xml.sax.saxutils import quoteattr
 
 from zope.dublincore import dcterms
+
 
 try:
     from cStringIO import StringIO

@@ -18,8 +18,10 @@
 ##############################################################################
 """Setup for zope.dublincore package
 """
-from setuptools import setup, find_packages
 import os.path
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(*path):
@@ -47,7 +49,7 @@ tests_require = testing_require + [
 
 setup(
     name="zope.dublincore",
-    version='4.3.1.dev0',
+    version='4.4.dev0',
     url='http://github.com/zopefoundation/zope.dublincore',
     license='ZPL 2.1',
     description='Zope Dublin Core implementation',
@@ -71,6 +73,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Internet :: WWW/HTTP',

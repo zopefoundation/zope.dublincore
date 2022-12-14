@@ -13,8 +13,10 @@
 ##############################################################################
 """Support information for qualified Dublin Core Metadata.
 """
-from zope.dublincore import dcsv
 import six
+
+from zope.dublincore import dcsv
+
 
 # useful namespace URIs
 DC_NS = "http://purl.org/dc/elements/1.1/"

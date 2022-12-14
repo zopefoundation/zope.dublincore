@@ -14,8 +14,10 @@
 """Test the Dublin Core Structured Value support functions.
 """
 from doctest import DocTestSuite
+
 # Imports needed inside the doctests:
-from zope.dublincore.dcsv import encode, decode
+from zope.dublincore.dcsv import decode
+from zope.dublincore.dcsv import encode
 
 
 # TODO still need tests for errors, and createMapping()

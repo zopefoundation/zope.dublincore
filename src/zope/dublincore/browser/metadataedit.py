@@ -14,10 +14,14 @@
 """Dublin Core Meta Data View
 """
 from datetime import datetime
+
 from zope.event import notify
-from zope.dublincore.interfaces import IZopeDublinCore
-from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 from zope.i18nmessageid import MessageFactory
+from zope.lifecycleevent import Attributes
+from zope.lifecycleevent import ObjectModifiedEvent
+
+from zope.dublincore.interfaces import IZopeDublinCore
+
 
 _ = MessageFactory('zope')
 text_type = type(u'')  # PY3

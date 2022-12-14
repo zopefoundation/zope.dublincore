@@ -1,9 +1,11 @@
-from zope.component.testing import PlacelessSetup
-from zope.dublincore.browser.metadataedit import MetaDataEdit
-from zope.publisher.browser import TestRequest
 import unittest
+
 import zope.annotation.interfaces
+from zope.component.testing import PlacelessSetup
+from zope.publisher.browser import TestRequest
+
 import zope.dublincore.testing
+from zope.dublincore.browser.metadataedit import MetaDataEdit
 
 
 @zope.interface.implementer(zope.annotation.interfaces.IAnnotations)

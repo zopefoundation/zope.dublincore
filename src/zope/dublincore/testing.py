@@ -14,8 +14,10 @@
 """Testing support
 """
 import re
-from zope import component
+
 from zope.testing import renormalizing
+
+from zope import component
 
 from .annotatableadapter import ZDCAnnotatableAdapter
 from .interfaces import IWriteZopeDublinCore

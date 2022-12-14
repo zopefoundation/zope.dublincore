@@ -21,6 +21,7 @@ class Test(TestCase):
 
     def testImplementa(self):
         from zope.interface.verify import verifyObject
+
         from zope.dublincore.interfaces import IZopeDublinCore
         verifyObject(IZopeDublinCore, self.dc)
 

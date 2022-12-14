@@ -14,6 +14,7 @@
 """ Tests that ZCML can be loaded.
 """
 import unittest
+
 import zope.component.testing
 
 
@@ -27,6 +28,7 @@ class ZCMLTests(unittest.TestCase):
         #        support:  its purpose is to ensure that the package's
         #        ZCML file is loadable *without* loading any other ZCML.
         from zope.configuration.xmlconfig import file
+
         import zope.dublincore
         return file('configure.zcml', package=zope.dublincore)
 
