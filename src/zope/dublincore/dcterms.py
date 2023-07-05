@@ -13,8 +13,6 @@
 ##############################################################################
 """Support information for qualified Dublin Core Metadata.
 """
-import six
-
 from zope.dublincore import dcsv
 
 
@@ -198,7 +196,7 @@ _prefix_to_ns = {
 }
 
 element_to_name = {}
-for name, (qname, attrs) in six.iteritems(name_to_element):
+for name, (qname, attrs) in name_to_element.items():
     prefix, localname = qname.split(":")
     elem_name = _prefix_to_ns[prefix], localname
     element_to_name[elem_name] = name

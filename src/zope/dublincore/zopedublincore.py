@@ -15,22 +15,13 @@
 """
 from datetime import datetime
 
-import six
-
 from zope.datetime import parseDatetimetz
 from zope.interface import implementer
 
 from zope.dublincore.interfaces import IZopeDublinCore
 
 
-try:
-    unicode
-except NameError:
-    # Py3: Make unicode available.
-    unicode = str
-
-
-class SimpleProperty(object):
+class SimpleProperty:
 
     def __init__(self, name):
         self.__name__ = name
@@ -45,11 +36,11 @@ class ScalarProperty(SimpleProperty):
         if data:
             return data[0]
         else:
-            return u''
+            return ''
 
     def __set__(self, inst, value):
-        if not isinstance(value, unicode):
-            raise TypeError("Element must be unicode")
+        if not isinstance(value, str):
+            raise TypeError("Element must be str")
         dict = inst._mapping
         __name__ = self.__name__
         inst._changed()
@@ -61,7 +52,7 @@ def _scalar_get(inst, name):
     if data:
         return data[0]
     else:
-        return u''
+        return ''
 
 
 class DateProperty(ScalarProperty):
@@ -80,11 +71,10 @@ class DateProperty(ScalarProperty):
             raise TypeError("Element must be %s", datetime)
 
         value = value.isoformat('T')
-        # Py3: Python 2 support, where isformat returned bytes.
         if isinstance(value, bytes):
             value = value.decode('ascii')
 
-        super(DateProperty, self).__set__(inst, value)
+        super().__set__(inst, value)
 
 
 class SequenceProperty(SimpleProperty):
@@ -98,14 +88,14 @@ class SequenceProperty(SimpleProperty):
     def __set__(self, inst, value):
         value = tuple(value)
         for v in value:
-            if not isinstance(v, unicode):
-                raise TypeError("Elements must be unicode")
+            if not isinstance(v, str):
+                raise TypeError("Elements must be str")
         inst._changed()
         inst._mapping[self.__name__] = value
 
 
 @implementer(IZopeDublinCore)
-class ZopeDublinCore(object):
+class ZopeDublinCore:
     """Zope Dublin Core Mixin
 
     Subclasses should define either `_changed()` or `_p_changed`.
@@ -121,37 +111,37 @@ class ZopeDublinCore(object):
     def _changed(self):
         self._p_changed = True
 
-    title = ScalarProperty(u'Title')
+    title = ScalarProperty('Title')
 
     def Title(self):
         """See `IZopeDublinCore`"""
         return self.title
 
-    creators = SequenceProperty(u'Creator')
+    creators = SequenceProperty('Creator')
 
     def Creator(self):
         """See `IZopeDublinCore`"""
         return self.creators
 
-    subjects = SequenceProperty(u'Subject')
+    subjects = SequenceProperty('Subject')
 
     def Subject(self):
         """See `IZopeDublinCore`"""
         return self.subjects
 
-    description = ScalarProperty(u'Description')
+    description = ScalarProperty('Description')
 
     def Description(self):
         """See `IZopeDublinCore`"""
         return self.description
 
-    publisher = ScalarProperty(u'Publisher')
+    publisher = ScalarProperty('Publisher')
 
     def Publisher(self):
         """See IZopeDublinCore"""
         return self.publisher
 
-    contributors = SequenceProperty(u'Contributor')
+    contributors = SequenceProperty('Contributor')
 
     def Contributors(self):
         """See `IZopeDublinCore`"""
@@ -159,57 +149,57 @@ class ZopeDublinCore(object):
 
     def Date(self):
         """See IZopeDublinCore"""
-        return _scalar_get(self, u'Date')
+        return _scalar_get(self, 'Date')
 
-    created = DateProperty(u'Date.Created')
+    created = DateProperty('Date.Created')
 
     def CreationDate(self):
         """See `IZopeDublinCore`"""
-        return _scalar_get(self, u'Date.Created')
+        return _scalar_get(self, 'Date.Created')
 
-    effective = DateProperty(u'Date.Effective')
+    effective = DateProperty('Date.Effective')
 
     def EffectiveDate(self):
         """See `IZopeDublinCore`"""
-        return _scalar_get(self, u'Date.Effective')
+        return _scalar_get(self, 'Date.Effective')
 
-    expires = DateProperty(u'Date.Expires')
+    expires = DateProperty('Date.Expires')
 
     def ExpirationDate(self):
         """See `IZopeDublinCore`"""
-        return _scalar_get(self, u'Date.Expires')
+        return _scalar_get(self, 'Date.Expires')
 
-    modified = DateProperty(u'Date.Modified')
+    modified = DateProperty('Date.Modified')
 
     def ModificationDate(self):
         """See `IZopeDublinCore`"""
-        return _scalar_get(self, u'Date.Modified')
+        return _scalar_get(self, 'Date.Modified')
 
-    type = ScalarProperty(u'Type')
+    type = ScalarProperty('Type')
 
     def Type(self):
         """See `IZopeDublinCore`"""
         return self.type
 
-    format = ScalarProperty(u'Format')
+    format = ScalarProperty('Format')
 
     def Format(self):
         """See `IZopeDublinCore`"""
         return self.format
 
-    identifier = ScalarProperty(u'Identifier')
+    identifier = ScalarProperty('Identifier')
 
     def Identifier(self):
         """See `IZopeDublinCore`"""
         return self.identifier
 
-    language = ScalarProperty(u'Language')
+    language = ScalarProperty('Language')
 
     def Language(self):
         """See `IZopeDublinCore`"""
         return self.language
 
-    rights = ScalarProperty(u'Rights')
+    rights = ScalarProperty('Rights')
 
     def Rights(self):
         """See `IZopeDublinCore`"""
@@ -217,123 +207,123 @@ class ZopeDublinCore(object):
 
     def setQualifiedTitles(self, qualified_titles):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Title', qualified_titles)
+        return _set_qualified(self, 'Title', qualified_titles)
 
     def setQualifiedCreators(self, qualified_creators):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Creator', qualified_creators)
+        return _set_qualified(self, 'Creator', qualified_creators)
 
     def setQualifiedSubjects(self, qualified_subjects):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Subject', qualified_subjects)
+        return _set_qualified(self, 'Subject', qualified_subjects)
 
     def setQualifiedDescriptions(self, qualified_descriptions):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Description', qualified_descriptions)
+        return _set_qualified(self, 'Description', qualified_descriptions)
 
     def setQualifiedPublishers(self, qualified_publishers):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Publisher', qualified_publishers)
+        return _set_qualified(self, 'Publisher', qualified_publishers)
 
     def setQualifiedContributors(self, qualified_contributors):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Contributor', qualified_contributors)
+        return _set_qualified(self, 'Contributor', qualified_contributors)
 
     def setQualifiedDates(self, qualified_dates):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Date', qualified_dates)
+        return _set_qualified(self, 'Date', qualified_dates)
 
     def setQualifiedTypes(self, qualified_types):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Type', qualified_types)
+        return _set_qualified(self, 'Type', qualified_types)
 
     def setQualifiedFormats(self, qualified_formats):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Format', qualified_formats)
+        return _set_qualified(self, 'Format', qualified_formats)
 
     def setQualifiedIdentifiers(self, qualified_identifiers):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Identifier', qualified_identifiers)
+        return _set_qualified(self, 'Identifier', qualified_identifiers)
 
     def setQualifiedSources(self, qualified_sources):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Source', qualified_sources)
+        return _set_qualified(self, 'Source', qualified_sources)
 
     def setQualifiedLanguages(self, qualified_languages):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Language', qualified_languages)
+        return _set_qualified(self, 'Language', qualified_languages)
 
     def setQualifiedRelations(self, qualified_relations):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Relation', qualified_relations)
+        return _set_qualified(self, 'Relation', qualified_relations)
 
     def setQualifiedCoverages(self, qualified_coverages):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Coverage', qualified_coverages)
+        return _set_qualified(self, 'Coverage', qualified_coverages)
 
     def setQualifiedRights(self, qualified_rights):
         """See `IWritableDublinCore`"""
-        return _set_qualified(self, u'Rights', qualified_rights)
+        return _set_qualified(self, 'Rights', qualified_rights)
 
     def getQualifiedTitles(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Title')
+        return _get_qualified(self, 'Title')
 
     def getQualifiedCreators(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Creator')
+        return _get_qualified(self, 'Creator')
 
     def getQualifiedSubjects(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Subject')
+        return _get_qualified(self, 'Subject')
 
     def getQualifiedDescriptions(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Description')
+        return _get_qualified(self, 'Description')
 
     def getQualifiedPublishers(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Publisher')
+        return _get_qualified(self, 'Publisher')
 
     def getQualifiedContributors(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Contributor')
+        return _get_qualified(self, 'Contributor')
 
     def getQualifiedDates(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Date')
+        return _get_qualified(self, 'Date')
 
     def getQualifiedTypes(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Type')
+        return _get_qualified(self, 'Type')
 
     def getQualifiedFormats(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Format')
+        return _get_qualified(self, 'Format')
 
     def getQualifiedIdentifiers(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Identifier')
+        return _get_qualified(self, 'Identifier')
 
     def getQualifiedSources(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Source')
+        return _get_qualified(self, 'Source')
 
     def getQualifiedLanguages(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Language')
+        return _get_qualified(self, 'Language')
 
     def getQualifiedRelations(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Relation')
+        return _get_qualified(self, 'Relation')
 
     def getQualifiedCoverages(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Coverage')
+        return _get_qualified(self, 'Coverage')
 
     def getQualifiedRights(self):
         """See `IStandardDublinCore`"""
-        return _get_qualified(self, u'Rights')
+        return _get_qualified(self, 'Rights')
 
 
 def _set_qualified(self, name, qvalue):
@@ -344,17 +334,17 @@ def _set_qualified(self, name, qvalue):
         data[qualification] = data.get(qualification, ()) + (value, )
 
     self._changed()
-    for qualification, values in six.iteritems(data):
+    for qualification, values in data.items():
         qname = qualification and (name + '.' + qualification) or name
         dict[qname] = values
 
 
 def _get_qualified(self, name):
     result = []
-    for aname, avalue in six.iteritems(self._mapping):
+    for aname, avalue in self._mapping.items():
 
         if aname == name:
-            qualification = u''
+            qualification = ''
             for value in avalue:
                 result.append((qualification, value))
 

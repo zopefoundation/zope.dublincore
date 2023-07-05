@@ -24,10 +24,9 @@ from zope.dublincore.interfaces import IZopeDublinCore
 
 
 _ = MessageFactory('zope')
-text_type = type(u'')  # PY3
 
 
-class MetaDataEdit(object):
+class MetaDataEdit:
     """Provide view for editing basic dublin-core meta-data."""
 
     def edit(self):
@@ -38,8 +37,8 @@ class MetaDataEdit(object):
         message = ''
 
         if 'dctitle' in request:
-            dc.title = text_type(request['dctitle'])
-            dc.description = text_type(request['dcdescription'])
+            dc.title = str(request['dctitle'])
+            dc.description = str(request['dcdescription'])
             description = Attributes(IZopeDublinCore, 'title', 'description')
             notify(ObjectModifiedEvent(self.context, description))
             message = _(

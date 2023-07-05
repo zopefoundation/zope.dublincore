@@ -43,10 +43,10 @@ class Test(TestCase):
 
     def __testQualified(self, name,
                         values=[
-                            (u'', u'blah blah'),
-                            (u'old', u'bleep bleep'),
-                            (u'old', u'bleep bleep \u1111'),
-                            (u'foo\u1111', u'bleep bleep'),
+                            ('', 'blah blah'),
+                            ('old', 'bleep bleep'),
+                            ('old', 'bleep bleep \u1111'),
+                            ('foo\u1111', 'bleep bleep'),
                         ]):
         getattr(self.dc, 'setQualified' + name)(values)
         self.__testGetQualified(name, values)
@@ -68,18 +68,18 @@ class Test(TestCase):
         ):
             self.__testQualified(qname)
             dc = self.dc
-            self.assertEqual(getattr(dc, pname), u'blah blah')
-            self.assertEqual(getattr(dc, mname)(), u'blah blah')
+            self.assertEqual(getattr(dc, pname), 'blah blah')
+            self.assertEqual(getattr(dc, mname)(), 'blah blah')
 
             self.assertRaises(Exception, setattr, dc, pname, b'foo')
-            setattr(dc, pname, u'foo')
-            self.assertEqual(getattr(dc, pname), u'foo')
-            self.assertEqual(getattr(dc, mname)(), u'foo')
+            setattr(dc, pname, 'foo')
+            self.assertEqual(getattr(dc, pname), 'foo')
+            self.assertEqual(getattr(dc, mname)(), 'foo')
             self.__testGetQualified(qname,
-                                    [(u'', u'foo'),
-                                     (u'old', u'bleep bleep'),
-                                     (u'old', u'bleep bleep \u1111'),
-                                     (u'foo\u1111', u'bleep bleep'),
+                                    [('', 'foo'),
+                                     ('old', 'bleep bleep'),
+                                     ('old', 'bleep bleep \u1111'),
+                                     ('foo\u1111', 'bleep bleep'),
                                      ]
                                     )
 
@@ -89,13 +89,13 @@ class Test(TestCase):
             ('Subjects', 'Subject', 'subjects'),
             ('Contributors', 'Contributors', 'contributors'),
         ):
-            self.__testQualified(qname, [(u'', u'foo'),
-                                         (u'', u'bar'),
-                                         (u'', u'baz'),
-                                         (u'', u'baz\u1111'),
-                                         (u'old', u'bleep bleep'),
-                                         (u'old', u'bleep bleep \u1111'),
-                                         (u'foo\u1111', u'bleep bleep'),
+            self.__testQualified(qname, [('', 'foo'),
+                                         ('', 'bar'),
+                                         ('', 'baz'),
+                                         ('', 'baz\u1111'),
+                                         ('old', 'bleep bleep'),
+                                         ('old', 'bleep bleep \u1111'),
+                                         ('foo\u1111', 'bleep bleep'),
                                          ]
                                  )
             dc = self.dc
@@ -103,50 +103,50 @@ class Test(TestCase):
             v = getattr(dc, pname)
             v = list(v)
             v.sort()
-            self.assertEqual(v, [u'bar', u'baz', u'baz\u1111', u'foo'])
+            self.assertEqual(v, ['bar', 'baz', 'baz\u1111', 'foo'])
 
             v = getattr(dc, mname)()
             v = list(v)
             v.sort()
-            self.assertEqual(v, [u'bar', u'baz', u'baz\u1111', u'foo'])
+            self.assertEqual(v, ['bar', 'baz', 'baz\u1111', 'foo'])
 
             self.assertRaises(Exception, setattr, dc, pname, b'foo')
             self.assertRaises(Exception, setattr, dc, pname, [b'foo'])
 
-            setattr(dc, pname, [u'high', u'low', u'spam', u'eggs', u'ham', ])
+            setattr(dc, pname, ['high', 'low', 'spam', 'eggs', 'ham', ])
 
             v = getattr(dc, pname)
             v = list(v)
             v.sort()
-            self.assertEqual(v, [u'eggs', u'ham', u'high', u'low', u'spam'])
+            self.assertEqual(v, ['eggs', 'ham', 'high', 'low', 'spam'])
 
             v = getattr(dc, mname)()
             v = list(v)
             v.sort()
-            self.assertEqual(v, [u'eggs', u'ham', u'high', u'low', u'spam'])
+            self.assertEqual(v, ['eggs', 'ham', 'high', 'low', 'spam'])
 
             self.__testGetQualified(qname,
-                                    [(u'', u'high'),
-                                     (u'', u'low'),
-                                     (u'', u'spam'),
-                                     (u'', u'eggs'),
-                                     (u'', u'ham'),
-                                     (u'old', u'bleep bleep'),
-                                     (u'old', u'bleep bleep \u1111'),
-                                     (u'foo\u1111', u'bleep bleep'),
+                                    [('', 'high'),
+                                     ('', 'low'),
+                                     ('', 'spam'),
+                                     ('', 'eggs'),
+                                     ('', 'ham'),
+                                     ('old', 'bleep bleep'),
+                                     ('old', 'bleep bleep \u1111'),
+                                     ('foo\u1111', 'bleep bleep'),
                                      ]
                                     )
 
     def testDates(self):
         self.__testQualified('Dates', [
-            (u'', u'1990-01-01'),
-            (u'Created', u'1980-10-01T23:11:10-04:00'),
-            (u'Modified', u'2002-10-01T12:09:22-04:00'),
-            (u'Effective', u'2002-10-09T00:00:00-04:00'),
-            (u'Expires', u'2002-10-16T00:00:00-04:00'),
-            (u'xxx', u'2000-07-04'),
-            (u'xxx', u'2001-12-31'),
-            (u'foo \u1111', u'2001-12-31'),
+            ('', '1990-01-01'),
+            ('Created', '1980-10-01T23:11:10-04:00'),
+            ('Modified', '2002-10-01T12:09:22-04:00'),
+            ('Effective', '2002-10-09T00:00:00-04:00'),
+            ('Expires', '2002-10-16T00:00:00-04:00'),
+            ('xxx', '2000-07-04'),
+            ('xxx', '2001-12-31'),
+            ('foo \u1111', '2001-12-31'),
         ])
 
         from zope.datetime import parseDatetimetz
@@ -161,11 +161,11 @@ class Test(TestCase):
         self.assertEqual(dc.expires,
                          parseDatetimetz('2002-10-16T00:00:00-04:00'))
 
-        self.assertEqual(dc.Date(), u'1990-01-01')
-        self.assertEqual(dc.CreationDate(), u'1980-10-01T23:11:10-04:00')
-        self.assertEqual(dc.ModificationDate(), u'2002-10-01T12:09:22-04:00')
-        self.assertEqual(dc.EffectiveDate(), u'2002-10-09T00:00:00-04:00')
-        self.assertEqual(dc.ExpirationDate(), u'2002-10-16T00:00:00-04:00')
+        self.assertEqual(dc.Date(), '1990-01-01')
+        self.assertEqual(dc.CreationDate(), '1980-10-01T23:11:10-04:00')
+        self.assertEqual(dc.ModificationDate(), '2002-10-01T12:09:22-04:00')
+        self.assertEqual(dc.EffectiveDate(), '2002-10-09T00:00:00-04:00')
+        self.assertEqual(dc.ExpirationDate(), '2002-10-16T00:00:00-04:00')
 
         dt = parseDatetimetz('2002-10-03T14:51:55-04:00')
 
@@ -175,7 +175,7 @@ class Test(TestCase):
 
         modified = [qv[1]
                     for qv in dc.getQualifiedDates()
-                    if qv[0] == u'Modified']
+                    if qv[0] == 'Modified']
 
         self.assertFalse(len(modified) != 1,
                          "should be only one: %r" % modified)

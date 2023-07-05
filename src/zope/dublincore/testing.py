@@ -13,23 +13,10 @@
 ##############################################################################
 """Testing support
 """
-import re
-
-from zope.testing import renormalizing
-
 from zope import component
 
 from .annotatableadapter import ZDCAnnotatableAdapter
 from .interfaces import IWriteZopeDublinCore
-
-
-checker = renormalizing.RENormalizing([
-    # Python 3 unicode removed the "u".
-    (re.compile("u('.*?')"),
-     r"\1"),
-    (re.compile('u(".*?")'),
-     r"\1"),
-])
 
 
 def setUpDublinCore():

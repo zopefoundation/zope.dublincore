@@ -20,7 +20,7 @@ from zope.dublincore.interfaces import IZopeDublinCore
 _marker = object()
 
 
-class DCProperty(object):
+class DCProperty:
     """Adapt to a dublin core property
 
     Handles DC list properties as scalar property.

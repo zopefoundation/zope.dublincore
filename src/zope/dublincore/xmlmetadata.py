@@ -15,16 +15,11 @@
 """
 import xml.sax
 import xml.sax.handler
+from io import StringIO
 from xml.sax.saxutils import escape
 from xml.sax.saxutils import quoteattr
 
 from zope.dublincore import dcterms
-
-
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import StringIO
 
 
 XSI_TYPE = (dcterms.XSI_NS, "type")
@@ -40,7 +35,7 @@ DEFAULT_NAMESPACE_PREFIXES = {
 }
 
 
-class NamespaceTracker(object):
+class NamespaceTracker:
     def __init__(self, mapping=None):
         self._mapping = {}
         self._used = {}
@@ -62,7 +57,7 @@ class NamespaceTracker(object):
             if prefix not in self._used:
                 self._used[prefix] = uri
         if prefix:
-            return "%s:%s" % (prefix, localname)
+            return "{}:{}".format(prefix, localname)
         else:
             return localname
 
@@ -87,8 +82,8 @@ def dumpString(mapping):
             if not type:
                 type = t
             if type:
-                type = " %s=%s" % (nsmap.encode((dcterms.XSI_NS, "type")),
-                                   quoteattr(type))
+                type = " {}={}".format(nsmap.encode((dcterms.XSI_NS, "type")),
+                                       quoteattr(type))
             for value in values:
                 sio.write("  <%s%s>\n    %s\n  </%s>\n"
                           % (qname, type, _encode_string(value), qname))
@@ -100,7 +95,7 @@ def dumpString(mapping):
     sio.write("<?xml version='1.0' encoding='utf-8'?>\n"
               "<metadata")
     for prefix, uri in nsmap.getPrefixMappings():
-        sio.write("\n  xmlns:%s=%s" % (prefix, quoteattr(uri)))
+        sio.write("\n  xmlns:{}={}".format(prefix, quoteattr(uri)))
     sio.write(">\n")
     sio.write(content)
     sio.write("</metadata>\n")
@@ -141,7 +136,7 @@ def _setup_parser(error_handler):
     return parser, ch
 
 
-class PrefixManager(object):
+class PrefixManager:
     # We don't use this other than in the DublinCoreHandler, but it's
     # entirely general so we'll separate it out for now.
 
@@ -193,7 +188,7 @@ class DublinCoreHandler(PrefixManager, xml.sax.handler.ContentHandler):
             return None
 
     def startElementNS(self, name, qname, attrs):
-        self.buffer = u""
+        self.buffer = ""
         # TODO: need convert element to metadata element name
         dcelem = validator = None
         if name in dcterms.element_to_name:
@@ -221,7 +216,7 @@ class DublinCoreHandler(PrefixManager, xml.sax.handler.ContentHandler):
             else:
                 raise ValueError("%s values are not allowed for %r"
                                  % (type, dcelem))
-            dcelem = "%s.%s" % (dcelem, type)
+            dcelem = "{}.{}".format(dcelem, type)
         if dcelem:
             cont = self.get_dc_container()
             if cont and cont != dcelem:
