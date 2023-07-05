@@ -4,6 +4,8 @@ Changes
 5.0 (unreleased)
 ----------------
 
+- Drop support for Python 2.7, 3.5, 3.6.
+
 - Add back support for Python 3.5.
 
 - Add support for Python 3.10, 3.11.
