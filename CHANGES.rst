@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.4 (unreleased)
+5.0 (unreleased)
 ----------------
 
 - Add back support for Python 3.5.
