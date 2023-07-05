@@ -23,27 +23,22 @@ import re
 
 __all__ = "encode", "decode"
 
-try:
-    unicode
-except NameError:
-    basestring = str  # PY3
-
 
 def encode(items):
     L = []
     for item in items:
-        if isinstance(item, basestring):
+        if isinstance(item, str):
             L.append(_encode_string(item, "values") + ";")
         else:
             k, v = item
-            if not isinstance(v, basestring):
+            if not isinstance(v, str):
                 raise TypeError("values must be strings; found %r" % v)
             v = _encode_string(v, "values")
             if k:
-                if not isinstance(k, basestring):
+                if not isinstance(k, str):
                     raise TypeError("labels must be strings; found %r" % k)
                 k = _encode_string(k, "labels")
-                s = "%s=%s;" % (k, v)
+                s = "{}={};".format(k, v)
             else:
                 s = v + ";"
             L.append(s)
@@ -112,12 +107,12 @@ def _decode_string(s):
 def createMapping(items, allow_duplicates=False):
     mapping = {}
     for item in items:
-        if isinstance(item, basestring):
+        if isinstance(item, str):
             raise ValueError("can't create mapping with unlabelled data")
         k, v = item
-        if not isinstance(k, basestring):
+        if not isinstance(k, str):
             raise TypeError("labels must be strings; found %r" % k)
-        if not isinstance(v, basestring):
+        if not isinstance(v, str):
             raise TypeError("values must be strings; found %r" % v)
         if k in mapping:
             if allow_duplicates:

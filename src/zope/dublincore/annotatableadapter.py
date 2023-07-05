@@ -13,8 +13,6 @@
 ##############################################################################
 """Dublin Core Annotatable Adapter
 """
-import six
-
 from persistent.dict import PersistentDict
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAnnotations
@@ -29,12 +27,6 @@ from zope.dublincore.zopedublincore import ZopeDublinCore
 
 
 DCkey = "zope.app.dublincore.ZopeDublinCore"
-
-try:
-    unicode
-except NameError:
-    # Py3: Make unicode available.
-    unicode = str
 
 
 @implementer(IWriteZopeDublinCore)
@@ -51,7 +43,7 @@ class ZDCAnnotatableAdapter(ZopeDublinCore, Location):
             self.annotations = annotations
             dcdata = ZDCAnnotationData()
 
-        super(ZDCAnnotatableAdapter, self).__init__(dcdata)
+        super().__init__(dcdata)
 
     def _changed(self):
         if self.annotations is not None:
@@ -74,7 +66,7 @@ class ZDCAnnotationData(PersistentDict):
 # mixture of annotations and data on the context object.
 
 
-class DirectProperty(object):
+class DirectProperty:
 
     def __init__(self, name, attrname):
         self.__name__ = name
@@ -84,11 +76,11 @@ class DirectProperty(object):
         if inst is None:
             return self
         context = inst._ZDCPartialAnnotatableAdapter__context
-        return getattr(context, self.__attrname, u"")
+        return getattr(context, self.__attrname, "")
 
     def __set__(self, inst, value):
-        if not isinstance(value, unicode):
-            raise TypeError("Element must be unicode")
+        if not isinstance(value, str):
+            raise TypeError("Element must be str")
         context = inst._ZDCPartialAnnotatableAdapter__context
         oldvalue = getattr(context, self.__attrname, None)
         if oldvalue != value:
@@ -117,7 +109,7 @@ def partialAnnotatableAdapterFactory(direct_fields):
             # can't use super() since this isn't a globally available class
             ZDCAnnotatableAdapter.__init__(self, context)
 
-    for dcname, attrname in six.iteritems(fieldmap):
+    for dcname, attrname in fieldmap.items():
         oldprop = ZopeDublinCore.__dict__.get(dcname)
         if oldprop is None:
             raise ValueError("%r is not a valid DC field" % dcname)

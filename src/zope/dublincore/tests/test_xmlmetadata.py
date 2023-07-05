@@ -34,7 +34,7 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
     _suffix = "\n</metadata>"
 
     def parse(self, text):
-        return parseString("%s%s%s" % (self._prefix, text, self._suffix))
+        return parseString("{}{}{}".format(self._prefix, text, self._suffix))
 
     def check1(self, text, name, value, generic=None):
         expected = {name: (value,)}
@@ -43,7 +43,7 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
         m = self.parse("<wrap>%s</wrap>" % text)
         self.assertEqual(m, expected)
         if generic:
-            m = self.parse("<%s>%s</%s>" % (generic, text, generic))
+            m = self.parse("<{}>{}</{}>".format(generic, text, generic))
             self.assertEqual(m, expected)
             m = self.parse("<%s><wrap>%s</wrap></%s>"
                            % (generic, text, generic))
@@ -58,18 +58,18 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
     # core elements and related refinements
 
     def test_simple_title(self):
-        self.check1("<d:title>Foo</d:title>", "Title", u"Foo")
+        self.check1("<d:title>Foo</d:title>", "Title", "Foo")
 
     def test_two_titles(self):
         m = self.parse("<d:title>Foo</d:title>"
                        "<d:title>Bar</d:title>")
-        self.assertEqual(m, {"Title": (u"Foo", u"Bar")})
+        self.assertEqual(m, {"Title": ("Foo", "Bar")})
 
     def test_alternative_title(self):
         m = self.parse("<d:title>Foo</d:title>"
                        "<t:alternative>Bar</t:alternative>")
-        self.assertEqual(m, {"Title": (u"Foo",),
-                             "Title.Alternative": (u"Bar",)})
+        self.assertEqual(m, {"Title": ("Foo",),
+                             "Title.Alternative": ("Bar",)})
 
     def test_creator(self):
         self.check1("<d:creator>somebody</d:creator>",
@@ -238,12 +238,12 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
         self.check1(("<d:title>"
                      "<t:alternative>Foo</t:alternative>"
                      "</d:title>"),
-                    "Title.Alternative", u"Foo")
+                    "Title.Alternative", "Foo")
         # nesting with an intermediate element
         self.check1(("<d:title>"
                      "<x><t:alternative>Foo</t:alternative></x>"
                      "</d:title>"),
-                    "Title.Alternative", u"Foo")
+                    "Title.Alternative", "Foo")
 
     # tests with errors in the input
 
@@ -277,13 +277,7 @@ class XMLDublinCoreSerializationTests(unittest.TestCase):
         self.roundtrip({})
 
     def test_single_entry(self):
-        self.roundtrip({"Title.Alternative": (u"Foo",)})
+        self.roundtrip({"Title.Alternative": ("Foo",)})
 
     def test_two_titles(self):
-        self.roundtrip({"Title": (u"Foo", u"Bar")})
-
-
-def test_suite():
-    suite = unittest.makeSuite(XMLDublinCoreLoadingTests)
-    suite.addTest(unittest.makeSuite(XMLDublinCoreSerializationTests))
-    return suite
+        self.roundtrip({"Title": ("Foo", "Bar")})

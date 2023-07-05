@@ -17,7 +17,7 @@ class MetaDataEditTests(PlacelessSetup, unittest.TestCase):
     """Testing ..metadataedit.MetaDataEdit."""
 
     def setUp(self):
-        super(MetaDataEditTests, self).setUp()
+        super().setUp()
         zope.dublincore.testing.setUpDublinCore()
 
     def test_metadataedit__MetaDataEdit__edit__1(self):

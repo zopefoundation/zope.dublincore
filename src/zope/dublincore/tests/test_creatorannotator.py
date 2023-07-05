@@ -53,10 +53,10 @@ class CreatorAnnotatorTests(unittest.TestCase):
         from zope.interface import implementer
 
         @implementer(self._iface)
-        class DummyDublinCore(object):
+        class DummyDublinCore:
             creators = ()
 
-        class DummyEvent(object):
+        class DummyEvent:
             def __init__(self, object):
                 self.object = object
 
@@ -67,7 +67,7 @@ class CreatorAnnotatorTests(unittest.TestCase):
     def _setPrincipal(self, id):
         from zope.security.management import newInteraction
 
-        class DummyPrincipal(object):
+        class DummyPrincipal:
             title = 'TITLE'
             description = 'DESCRIPTION'
 
@@ -118,7 +118,7 @@ class CreatorAnnotatorObjectEventTests(CreatorAnnotatorTests):
         return CreatorAnnotator(event.object, event)
 
 
-class DummyDCAdapter(object):
+class DummyDCAdapter:
 
     def _getcreator(self):
         return self.context.creators
@@ -131,7 +131,7 @@ class DummyDCAdapter(object):
         self.context = context
 
 
-class DummyRequest(object):
+class DummyRequest:
 
     def __init__(self, principal):
         self.principal = principal

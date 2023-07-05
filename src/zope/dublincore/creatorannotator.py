@@ -19,13 +19,6 @@ from zope.security.proxy import removeSecurityProxy
 from zope.dublincore.interfaces import IZopeDublinCore
 
 
-try:
-    unicode
-except NameError:
-    # Py3: Make unicode available.
-    unicode = str
-
-
 def CreatorAnnotator(object, event=None):
     """Update Dublin-Core creator property"""
     if event is None:
@@ -49,4 +42,4 @@ def CreatorAnnotator(object, event=None):
                 continue
             principalid = participation.principal.id
             if principalid not in dc.creators:
-                dc.creators = dc.creators + (unicode(principalid), )
+                dc.creators = dc.creators + (str(principalid), )

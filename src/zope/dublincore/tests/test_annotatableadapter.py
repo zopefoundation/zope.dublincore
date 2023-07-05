@@ -59,7 +59,7 @@ class ZDCAnnotatableAdapterTests(unittest.TestCase):
         return self._getTargetClass()(context)
 
     def _makeContext(self):
-        class DummyContext(object):
+        class DummyContext:
             pass
         return DummyContext()
 
@@ -123,32 +123,32 @@ class DirectPropertyTests(unittest.TestCase):
     def test___get___via_klass(self):
         prop = self._makeOne('title', 'headline')
 
-        class Testing(object):
+        class Testing:
             title = prop
         self.assertTrue(Testing.title is prop)
 
     def test___get___via_instance(self):
         prop = self._makeOne('title', 'headline')
 
-        class Context(object):
-            headline = u'HEADLINE'
+        class Context:
+            headline = 'HEADLINE'
 
-        class ZDCPartialAnnotatableAdapter(object):
+        class ZDCPartialAnnotatableAdapter:
             title = prop
 
             def __init__(self, context):
                 self.__context = context
         context = Context()
         testing = ZDCPartialAnnotatableAdapter(context)
-        self.assertEqual(testing.title, u'HEADLINE')
+        self.assertEqual(testing.title, 'HEADLINE')
 
     def test___set___non_unicode_raises(self):
         prop = self._makeOne('title', 'headline')
 
-        class Context(object):
-            headline = u'HEADLINE'
+        class Context:
+            headline = 'HEADLINE'
 
-        class ZDCPartialAnnotatableAdapter(object):
+        class ZDCPartialAnnotatableAdapter:
             title = prop
 
             def __init__(self, context):
@@ -165,36 +165,36 @@ class DirectPropertyTests(unittest.TestCase):
     def test___set___unchanged_doesnt_mutate(self):
         prop = self._makeOne('title', 'headline')
 
-        class Context(object):
-            headline = u'HEADLINE'
+        class Context:
+            headline = 'HEADLINE'
 
             def __setattr__(self, name, value):
                 assert 0
 
-        class ZDCPartialAnnotatableAdapter(object):
+        class ZDCPartialAnnotatableAdapter:
             title = prop
 
             def __init__(self, context):
                 self.__context = context
         context = Context()
         testing = ZDCPartialAnnotatableAdapter(context)
-        testing.title = u'HEADLINE'  # doesn't raise
+        testing.title = 'HEADLINE'  # doesn't raise
 
     def test___set___changed_mutates(self):
         prop = self._makeOne('title', 'headline')
 
-        class Context(object):
-            headline = u'HEADLINE1'
+        class Context:
+            headline = 'HEADLINE1'
 
-        class ZDCPartialAnnotatableAdapter(object):
+        class ZDCPartialAnnotatableAdapter:
             title = prop
 
             def __init__(self, context):
                 self.__context = context
         context = Context()
         testing = ZDCPartialAnnotatableAdapter(context)
-        testing.title = u'HEADLINE2'
-        self.assertEqual(context.headline, u'HEADLINE2')
+        testing.title = 'HEADLINE2'
+        self.assertEqual(context.headline, 'HEADLINE2')
 
 
 class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
@@ -239,11 +239,3 @@ class Test_partialAnnotatableAdapterFactory(unittest.TestCase):
         self.assertTrue(isinstance(prop, DirectProperty))
         self.assertEqual(prop.__name__, 'title')
         self.assertEqual(prop._DirectProperty__attrname, 'headline')  # XXX
-
-
-def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(ZDCAnnotatableAdapterTests),
-        unittest.makeSuite(DirectPropertyTests),
-        unittest.makeSuite(Test_partialAnnotatableAdapterFactory),
-    ))

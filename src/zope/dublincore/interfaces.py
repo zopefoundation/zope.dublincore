@@ -24,13 +24,13 @@ class IDublinCoreElementItem(Interface):
     """A qualified dublin core element"""
 
     qualification = TextLine(
-        title=u"Qualification",
-        description=u"The element qualification"
+        title="Qualification",
+        description="The element qualification"
     )
 
     value = Text(
-        title=u"Value",
-        description=u"The element value",
+        title="Value",
+        description="The element value",
     )
 
 
@@ -204,14 +204,14 @@ class IDCDescriptiveProperties(Interface):
     """Basic descriptive meta-data properties"""
 
     title = TextLine(
-        title=u'Title',
-        description=u"The first unqualified Dublin Core 'Title' element value."
+        title='Title',
+        description="The first unqualified Dublin Core 'Title' element value."
     )
 
     description = Text(
-        title=u'Description',
+        title='Description',
         description=(
-            u"The first unqualified Dublin Core 'Description' element value.")
+            "The first unqualified Dublin Core 'Description' element value.")
     )
 
 
@@ -219,15 +219,15 @@ class IDCTimes(Interface):
     """Time properties"""
 
     created = Datetime(
-        title=u'Creation Date',
-        description=u"The date and time that an object is created."
-                    u"\nThis is normally set automatically."
+        title='Creation Date',
+        description="The date and time that an object is created."
+                    "\nThis is normally set automatically."
     )
 
     modified = Datetime(
-        title=u'Modification Date',
-        description=u"The date and time that the object was last modified in a"
-                    u" meaningful way."
+        title='Modification Date',
+        description="The date and time that the object was last modified in a"
+                    " meaningful way."
     )
 
 
@@ -235,14 +235,14 @@ class IDCPublishing(Interface):
     """Publishing properties"""
 
     effective = Datetime(
-        title=u'Effective Date',
-        description=u"The date and time that an object should be published."
+        title='Effective Date',
+        description="The date and time that an object should be published."
     )
 
     expires = Datetime(
-        title=u'Expiration Date',
-        description=u"The date and time that the object should become"
-                    u" unpublished."
+        title='Expiration Date',
+        description="The date and time that the object should become"
+                    " unpublished."
     )
 
 
@@ -254,27 +254,27 @@ class IDCExtended(Interface):
     """
 
     creators = Tuple(
-        title=u'Creators',
-        description=u"The unqualified Dublin Core 'Creator' element values",
+        title='Creators',
+        description="The unqualified Dublin Core 'Creator' element values",
         value_type=TextLine(),
     )
 
     subjects = Tuple(
-        title=u'Subjects',
-        description=u"The unqualified Dublin Core 'Subject' element values",
+        title='Subjects',
+        description="The unqualified Dublin Core 'Subject' element values",
         value_type=TextLine(),
     )
 
     publisher = Text(
-        title=u'Publisher',
-        description=u"The first unqualified Dublin Core 'Publisher' element"
-                    u" value.",
+        title='Publisher',
+        description="The first unqualified Dublin Core 'Publisher' element"
+                    " value.",
     )
 
     contributors = Tuple(
-        title=u'Contributors',
-        description=u"The unqualified Dublin Core 'Contributor' element"
-                    u" values",
+        title='Contributors',
+        description="The unqualified Dublin Core 'Contributor' element"
+                    " values",
         value_type=TextLine(),
     )
 
