@@ -1,5 +1,5 @@
-``zope.dublincore``
-===================
+zope.dublincore
+===============
 
 .. image:: https://github.com/zopefoundation/zope.dublincore/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/zopefoundation/zope.dublincore/actions/workflows/tests.yml
