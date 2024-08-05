@@ -57,7 +57,7 @@ class NamespaceTracker:
             if prefix not in self._used:
                 self._used[prefix] = uri
         if prefix:
-            return "{}:{}".format(prefix, localname)
+            return f"{prefix}:{localname}"
         else:
             return localname
 
@@ -95,7 +95,7 @@ def dumpString(mapping):
     sio.write("<?xml version='1.0' encoding='utf-8'?>\n"
               "<metadata")
     for prefix, uri in nsmap.getPrefixMappings():
-        sio.write("\n  xmlns:{}={}".format(prefix, quoteattr(uri)))
+        sio.write(f"\n  xmlns:{prefix}={quoteattr(uri)}")
     sio.write(">\n")
     sio.write(content)
     sio.write("</metadata>\n")
@@ -216,7 +216,7 @@ class DublinCoreHandler(PrefixManager, xml.sax.handler.ContentHandler):
             else:
                 raise ValueError("%s values are not allowed for %r"
                                  % (type, dcelem))
-            dcelem = "{}.{}".format(dcelem, type)
+            dcelem = f"{dcelem}.{type}"
         if dcelem:
             cont = self.get_dc_container()
             if cont and cont != dcelem:

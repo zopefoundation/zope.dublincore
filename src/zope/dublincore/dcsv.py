@@ -38,7 +38,7 @@ def encode(items):
                 if not isinstance(k, str):
                     raise TypeError("labels must be strings; found %r" % k)
                 k = _encode_string(k, "labels")
-                s = "{}={};".format(k, v)
+                s = f"{k}={v};"
             else:
                 s = v + ";"
             L.append(s)

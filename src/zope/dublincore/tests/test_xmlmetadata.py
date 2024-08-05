@@ -34,7 +34,7 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
     _suffix = "\n</metadata>"
 
     def parse(self, text):
-        return parseString("{}{}{}".format(self._prefix, text, self._suffix))
+        return parseString(f"{self._prefix}{text}{self._suffix}")
 
     def check1(self, text, name, value, generic=None):
         expected = {name: (value,)}
@@ -43,7 +43,7 @@ class XMLDublinCoreLoadingTests(unittest.TestCase):
         m = self.parse("<wrap>%s</wrap>" % text)
         self.assertEqual(m, expected)
         if generic:
-            m = self.parse("<{}>{}</{}>".format(generic, text, generic))
+            m = self.parse(f"<{generic}>{text}</{generic}>")
             self.assertEqual(m, expected)
             m = self.parse("<%s><wrap>%s</wrap></%s>"
                            % (generic, text, generic))
