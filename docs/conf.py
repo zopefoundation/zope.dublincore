@@ -243,7 +243,7 @@ man_pages = [('index', 'zopedublincore', 'zope.dublincore Documentation',
 texinfo_documents = [
     ('index', 'zopedublincore', 'zope.dublincore Documentation',
      'Zope Foundation and Contributors', 'zopedublincore',
-     'One line description of project.', 'Miscellaneous'),
+     'Dublin Core support for Zope-based web applications.', 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
