@@ -62,7 +62,7 @@ Changes
 4.0.1 (2014-12-20)
 ------------------
 
-- Add support for testing on Travis-CI.
+- Add support for testing in CI.
 
 
 4.0.0 (2013-02-20)
