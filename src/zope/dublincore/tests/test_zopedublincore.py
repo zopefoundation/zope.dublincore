@@ -33,7 +33,7 @@ class Test(TestCase):
         self.dc = self._Test__new()
 
     def __testGetQualified(self, name, values):
-        ovalues = getattr(self.dc, 'getQualified'+name)()
+        ovalues = getattr(self.dc, 'getQualified' + name)()
 
         ivalues = list(values)
         ivalues.sort()
@@ -177,8 +177,11 @@ class Test(TestCase):
                     for qv in dc.getQualifiedDates()
                     if qv[0] == 'Modified']
 
-        self.assertFalse(len(modified) != 1,
-                         "should be only one: %r" % modified)
+        self.assertEqual(
+            len(modified),
+            1,
+            "should be only one: %r" % modified
+        )
 
         self.assertEqual(parseDatetimetz(modified[0]), dt)
 
