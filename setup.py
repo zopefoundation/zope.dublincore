@@ -20,7 +20,6 @@
 """
 import os.path
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -36,7 +35,7 @@ long_description = '\n\n'.join([
 
 testing_require = [
     'zope.testing >= 3.8',
-    'zope.testrunner',
+    'zope.testrunner >= 6.4',
     'zope.configuration',
     'BTrees',
 ]
@@ -48,7 +47,7 @@ tests_require = testing_require + [
 
 setup(
     name="zope.dublincore",
-    version='5.2.dev0',
+    version='6.0.dev0',
     url='http://github.com/zopefoundation/zope.dublincore',
     license='ZPL-2.1',
     description='Zope Dublin Core implementation',
@@ -74,9 +73,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
     ],
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['zope'],
     include_package_data=True,
     python_requires='>=3.9',
     install_requires=[
