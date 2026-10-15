@@ -97,20 +97,20 @@ you can see how well the tests cover the code:
    ......................................................................................
    Name                                      Stmts   Miss  Cover   Missing
    -----------------------------------------------------------------------
-   zope/dublincore.py                            0      0   100%   
-   zope/dublincore/annotatableadapter.py        73     73   100%  
-   zope/dublincore/browser.py                    0      0   100%   
-   zope/dublincore/browser/metadataedit.py      21     21   100%  
-   zope/dublincore/creatorannotator.py          24     24   100%  
-   zope/dublincore/dcsv.py                      92     92   100%  
-   zope/dublincore/dcterms.py                   65     65   100%  
-   zope/dublincore/interfaces.py                72     72   100%   
-   zope/dublincore/property.py                  66     66   100%  
-   zope/dublincore/timeannotators.py            27     27   100%  
-   zope/dublincore/xmlmetadata.py              173    173   100%  
-   zope/dublincore/zopedublincore.py           198    !98   100%  
+   zope/dublincore.py                            0      0   100%
+   zope/dublincore/annotatableadapter.py        73     73   100%
+   zope/dublincore/browser.py                    0      0   100%
+   zope/dublincore/browser/metadataedit.py      21     21   100%
+   zope/dublincore/creatorannotator.py          24     24   100%
+   zope/dublincore/dcsv.py                      92     92   100%
+   zope/dublincore/dcterms.py                   65     65   100%
+   zope/dublincore/interfaces.py                72     72   100%
+   zope/dublincore/property.py                  66     66   100%
+   zope/dublincore/timeannotators.py            27     27   100%
+   zope/dublincore/xmlmetadata.py              173    173   100%
+   zope/dublincore/zopedublincore.py           198    !98   100%
    -----------------------------------------------------------------------
-   TOTAL                                       811    811   100%   
+   TOTAL                                       811    811   100%
    ----------------------------------------------------------------------
    Ran 86 tests in 0.000s
 
@@ -195,7 +195,7 @@ tool designed to run tests against multiple Python versions.  It creates
 a ``virtualenv`` for each configured version, installs the current package
 and configured dependencies into each ``virtualenv``, and then runs the
 configured commands.
-   
+
 :mod:`zope.dublincore` configures the following :mod:`tox` environments via
 its ``tox.ini`` file:
 
