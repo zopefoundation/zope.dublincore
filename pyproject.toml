@@ -7,6 +7,69 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+
+[project]
+name = "zope.dublincore"
+version = "6.1.dev0"
+description = "Zope Dublin Core implementation"
+license = "ZPL-2.1"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development",
+]
+dynamic = ["readme"]
+requires-python = ">=3.11"
+authors = [
+    {name = "Zope Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+maintainers = [
+    {name = "Plone Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+dependencies = [
+    "persistent",
+    "pytz",
+    "setuptools",
+    "zope.annotation",
+    "zope.component[zcml]",
+    "zope.datetime",
+    "zope.interface",
+    "zope.lifecycleevent",
+    "zope.location",
+    "zope.schema",
+    "zope.security[zcml]>=3.8",
+]
+keywords = ["metadata", "dublincore"]
+
+[project.optional-dependencies]
+test = [
+    "zope.testing >= 3.8",
+    "zope.testrunner >= 6.4",
+    "zope.configuration",
+    "BTrees",
+    "zope.publisher",
+]
+docs = [
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.testing",
+]
+
+[project.urls]
+Source = "http://github.com/zopefoundation/zope.dublincore"
+
 [tool.coverage.run]
 branch = true
 source = ["zope.dublincore"]
@@ -29,3 +92,6 @@ exclude_lines = [
 
 [tool.coverage.html]
 directory = "parts/htmlcov"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGES.rst"]}
