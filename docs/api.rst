@@ -32,4 +32,3 @@
 
    .. autointerface:: IWriteZopeDublinCore
       :members:
-
