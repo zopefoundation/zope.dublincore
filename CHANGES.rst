@@ -4,6 +4,10 @@ Changes
 6.1 (unreleased)
 ----------------
 
+- Drop the fossilized ``testing`` extra (partial shadow of the ``test`` extra).
+
+- Move package metadata from setup.py to pyproject.toml.
+
 - Add support for Python 3.14, 3.15.
 
 - Drop support for Python 3.10, 3.9.
