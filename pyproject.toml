@@ -41,7 +41,6 @@ maintainers = [
 dependencies = [
     "persistent",
     "pytz",
-    "setuptools",
     "zope.annotation",
     "zope.component[zcml]",
     "zope.datetime",
@@ -68,7 +67,10 @@ docs = [
 ]
 
 [project.urls]
+Documentation = "https://zopedublincore.readthedocs.io/"
 Source = "http://github.com/zopefoundation/zope.dublincore"
+Issues = "https://github.com/zopefoundation/zope.dublincore/issues"
+Changelog = "https://raw.githubusercontent.com/zopefoundation/zope.dublincore/master/CHANGES.rst"
 
 [tool.coverage.run]
 branch = true
