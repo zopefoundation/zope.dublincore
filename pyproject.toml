@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zope.dublincore"
-version = "6.1"
+version = "6.2.dev0"
 description = "Zope Dublin Core implementation"
 license = "ZPL-2.1"
 classifiers = [
