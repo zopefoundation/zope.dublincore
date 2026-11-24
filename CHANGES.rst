@@ -1,7 +1,7 @@
 Changes
 =======
 
-6.1 (unreleased)
+6.1 (2026-11-24)
 ----------------
 
 - Drop the fossilized ``testing`` extra (partial shadow of the ``test`` extra).
